@@ -1,1 +1,3 @@
-#Minesweeper
+Minesweeper
+
+This is a README file
