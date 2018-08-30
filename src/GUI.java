@@ -1,4 +1,8 @@
 
-public class GUI {
-
+public class GUI 
+{
+	public GUI()
+	{
+		
+	}
 }
