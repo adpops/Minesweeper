@@ -17,16 +17,21 @@ import java.awt.event.ActionEvent;
 
 public class GUI
 {	
-	static JFrame f = 	new JFrame();
-	JPanel login;
-    JPanel startMenu;
-    JPanel game;
-    JPanel register;
+	private JFrame f = 	new JFrame();
+	private JPanel login;
+	private JPanel startMenu;
+	private JPanel game;
+	private JPanel register;
+	private Board board;
      
 	private JTextField loginUser;
 	private JPasswordField loginPass;
 	private JTextField regUser;
 	private JPasswordField regPass;
+	
+	private int frameX;
+	private int frameY;
+	private int loginFieldWidth;
 	
 	CardLayout cards = new CardLayout();
 
@@ -43,112 +48,109 @@ public class GUI
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.getContentPane().setLayout(cards);
         
-        int frameX = f.getWidth();
-		int frameY = f.getHeight();
-        	
-		
-		
-        /*******************/
-        /*   Login Panel   */
-        /*******************/
-		
-        login = new JPanel();
-        f.getContentPane().add(login, "LOGIN");
-        login.setLayout(null);
-        
-        //Create Login Fields 
-        int loginFieldWidth = 130;
-        int loginFieldHeight = 35;
-        int loginFieldX = (frameX - loginFieldWidth)/2;
-        int loginFieldY = (frameY - loginFieldHeight)/2;
-        
-        loginUser = new JTextField();
-        loginUser.setBounds(loginFieldX, loginFieldY - 30, loginFieldWidth, loginFieldHeight);
-        login.add(loginUser);
-        loginUser.setColumns(10);
-        
-        loginPass = new JPasswordField();
-        loginPass.setBounds(loginFieldX, loginFieldY + 30, loginFieldWidth, loginFieldHeight);
-        login.add(loginPass);
+        frameX = f.getWidth();
+		frameY = f.getHeight();	
        
-        //Create Username and Password Labels
-        int loginLblWidth = 100;
-        int loginLblHeight = 25;
-        int loginLblX = loginFieldX - 110;
-        int loginLblY = loginFieldY;
+        loginPanel();
+        startMenuPanel();
+        gamePanel();
+        registerPanel();
         
-        JLabel loginUserLbl = new JLabel("Username");
-        loginUserLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        loginUserLbl.setBounds(loginLblX, loginLblY - 25, loginLblWidth, loginLblHeight);
-        login.add(loginUserLbl);
-        
-        JLabel loginPassLbl = new JLabel("Password");
-        loginPassLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        loginPassLbl.setBounds(loginLblX, loginLblY + 35, loginLblWidth, loginLblHeight);
-        login.add(loginPassLbl);
-         
-        //Create Login and Register Buttons  
-        int loginBtnWidth = 120;
-        int loginBtnHeight = 35;
-        int loginBtnX = loginFieldX + (loginFieldWidth - loginBtnWidth)/2;
-        int loginBtnY = loginFieldY + 30;
-        
-        JButton loginStartBtn = new JButton("Login");
-        loginStartBtn.addActionListener(new ActionListener() 
-        {
-        	public void actionPerformed(ActionEvent e) 
-        	{
-        		cards.show(f.getContentPane(), "START");
-        	}
-        });
-        loginStartBtn.setBounds(loginBtnX, loginBtnY + 60, loginBtnWidth, loginBtnHeight);
-        login.add(loginStartBtn);
-        
-        JButton loginRegBtn = new JButton("Register");
-        loginRegBtn.addActionListener(new ActionListener() 
-        {
-        	public void actionPerformed(ActionEvent e) 
-        	{        		cards.show(f.getContentPane(), "REGISTER");	
-        	}
-        });
-        loginRegBtn.setBounds(loginBtnX, loginBtnY + 120, loginBtnWidth, loginBtnHeight);
-        login.add(loginRegBtn);
-        
-        JButton loginExitBtn = new JButton("Exit");
-        loginExitBtn.addActionListener(new ActionListener() 
-        {
-        	public void actionPerformed(ActionEvent e) 
-        	{
-        		System.exit(0);
-        	}
-        });
-        loginExitBtn.setBounds(loginBtnX, loginBtnY + 220, loginBtnWidth, loginBtnHeight);
-        login.add(loginExitBtn);
-        
-        
-        
-        /**********************/
-        /*  Start Menu Panel  */
-        /**********************/
-        startMenu = new JPanel();
+        board = new Board(width, height);
+	}
+	
+	private void loginPanel()
+	{
+		login = new JPanel();
+		f.getContentPane().add(login, "LOGIN");
+		login.setLayout(null);
+		
+		//Create Login Fields 
+	    loginFieldWidth = 130;
+	    int loginFieldHeight = 35;
+	    int loginFieldX = (frameX - loginFieldWidth)/2;
+	    int loginFieldY = (frameY - loginFieldHeight)/2;
+	    
+	    loginUser = new JTextField();
+	    loginUser.setBounds(loginFieldX, loginFieldY - 30, loginFieldWidth, loginFieldHeight);
+	    login.add(loginUser);
+	    loginUser.setColumns(10);
+	    
+	    loginPass = new JPasswordField();
+	    loginPass.setBounds(loginFieldX, loginFieldY + 30, loginFieldWidth, loginFieldHeight);
+	    login.add(loginPass);
+		   
+		//Create Username and Password Labels
+		int loginLblWidth = 100;
+		int loginLblHeight = 25;
+		int loginLblX = loginFieldX - 110;
+		int loginLblY = loginFieldY;
+		
+		JLabel loginUserLbl = new JLabel("Username");
+		loginUserLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		loginUserLbl.setBounds(loginLblX, loginLblY - 25, loginLblWidth, loginLblHeight);
+		login.add(loginUserLbl);
+		
+		JLabel loginPassLbl = new JLabel("Password");
+		loginPassLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		loginPassLbl.setBounds(loginLblX, loginLblY + 35, loginLblWidth, loginLblHeight);
+		login.add(loginPassLbl);
+		 
+		//Create Login and Register Buttons  
+		int loginBtnWidth = 120;
+		int loginBtnHeight = 35;
+		int loginBtnX = loginFieldX + (loginFieldWidth - loginBtnWidth)/2;
+		int loginBtnY = loginFieldY + 30;
+		
+		JButton loginStartBtn = new JButton("Login");
+		loginStartBtn.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				cards.show(f.getContentPane(), "START");
+			}
+		});
+		loginStartBtn.setBounds(loginBtnX, loginBtnY + 60, loginBtnWidth, loginBtnHeight);
+		login.add(loginStartBtn);
+		
+		JButton loginRegBtn = new JButton("Register");
+		loginRegBtn.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				cards.show(f.getContentPane(), "REGISTER");	
+			}
+		});
+		loginRegBtn.setBounds(loginBtnX, loginBtnY + 120, loginBtnWidth, loginBtnHeight);
+		login.add(loginRegBtn);
+		
+		JButton loginExitBtn = new JButton("Exit");
+		loginExitBtn.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				System.exit(0);
+			}
+		});
+		loginExitBtn.setBounds(loginBtnX, loginBtnY + 220, loginBtnWidth, loginBtnHeight);
+		login.add(loginExitBtn);
+	}
+	
+	private void startMenuPanel()
+	{
+		startMenu = new JPanel();
         f.getContentPane().add(startMenu, "START");
-        
-        
-        
-        /*******************/
-        /*   Game Panel    */
-        /*******************/
-        
-        game = new JPanel();
+	}
+	
+	private void gamePanel() 
+	{
+		game = new JPanel();
         f.getContentPane().add(game, "GAME");
-        
-        
-        
-        /**********************/
-        /*   Register Panel   */
-        /**********************/
-        
-        register = new JPanel();
+	}
+	
+	private void registerPanel()
+	{
+		register = new JPanel();
         f.getContentPane().add(register, "REGISTER");
         register.setLayout(null);
         
