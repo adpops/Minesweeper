@@ -22,7 +22,7 @@ public class GUI
     JPanel startMenu;
     JPanel game;
     JPanel register;
-    
+     
 	private JTextField username;
 	private JPasswordField password;
 	
@@ -68,7 +68,23 @@ public class GUI
         password = new JPasswordField();
         password.setBounds(loginFieldX, loginFieldY + 30, loginFieldWidth, loginFieldHeight);
         login.add(password);
+       
+        //Create Username and Password Labels
+        int loginLblWidth = 100;
+        int loginLblHeight = 25;
+        int loginLblX = loginFieldX - 110;
+        int loginLblY = loginFieldY;
         
+        JLabel userLbl = new JLabel("Username");
+        userLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        userLbl.setBounds(loginLblX, loginLblY - 25, loginLblWidth, loginLblHeight);
+        login.add(userLbl);
+        
+        JLabel passLbl = new JLabel("Password");
+        passLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        passLbl.setBounds(loginLblX, loginLblY + 35, loginLblWidth, loginLblHeight);
+        login.add(passLbl);
+         
         //Create Login and Register Buttons  
         int loginBtnWidth = 120;
         int loginBtnHeight = 35;
@@ -90,28 +106,11 @@ public class GUI
         registerBtn.addActionListener(new ActionListener() 
         {
         	public void actionPerformed(ActionEvent e) 
-        	{
-        		cards.show(f.getContentPane(), "REGISTER");
+        	{        		cards.show(f.getContentPane(), "REGISTER");	
         	}
         });
         registerBtn.setBounds(loginBtnX, loginBtnY + 120, loginBtnWidth, loginBtnHeight);
         login.add(registerBtn);
-        
-        //Create Username and Password Labels
-        int loginLblWidth = 100;
-        int loginLblHeight = 25;
-        int loginLblX = loginFieldX - 110;
-        int loginLblY = loginFieldY;
-        
-        JLabel userLbl = new JLabel("Username");
-        userLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        userLbl.setBounds(loginLblX, loginLblY - 25, loginLblWidth, loginLblHeight);
-        login.add(userLbl);
-        
-        JLabel passLbl = new JLabel("Password");
-        passLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
-        passLbl.setBounds(loginLblX, loginLblY + 35, loginLblWidth, loginLblHeight);
-        login.add(passLbl);
         
         
         
@@ -138,6 +137,7 @@ public class GUI
         
         register = new JPanel();
         f.getContentPane().add(register, "REGISTER");
+        
         f.setVisible(true);
 	}
 }
