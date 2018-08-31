@@ -9,7 +9,6 @@ public class Listener implements MouseListener
 {
 	private boolean alive;
 	private Tile tile;
-	private boolean containsMine;
 	private int num;
 	private Tile tileList[][];
 	private Tile potTile;
@@ -24,7 +23,6 @@ public class Listener implements MouseListener
     public Listener(Tile tile, Board board) 
     {
     	this.tile = tile;
-        this.containsMine = tile.getContainsMine();
         this.num = tile.getNum();
         tile.setAlive(true);
 		tileList = board.getTileList();
@@ -37,13 +35,14 @@ public class Listener implements MouseListener
     	alive = tile.getAlive();
     	if(alive) //If the tile has already been clicked, don't do anything
     	{
-    		if(SwingUtilities.isLeftMouseButton(evt))
+    		if(SwingUtilities.isLeftMouseButton(evt)) //If Left Click
     		{
-        		if(!containsMine) //If it contains a mine, game over
+        		if(num != -1) //If it contains a mine, game over
             	{
         			tile.setAlive(false); //sets it so program knows that tile has been clicked before
-            		if(num != 0 && num != -1)
+            		if(num != 0)
             		{
+        				potTile.removeImage(COVER);
             			tile.placeImageOnTile(NUMBER);
             		}
             		
@@ -54,7 +53,7 @@ public class Listener implements MouseListener
             			if(potTile.getNum() == 0)
             			{
             				potTile.removeImage(COVER);
-            		    	potTile.setAlive(potTile.getAlive());
+            		    	potTile.setAlive(false);
             			}
             		}
             		
@@ -64,7 +63,7 @@ public class Listener implements MouseListener
             			if(potTile.getNum() == 0)
             			{
             				potTile.removeImage(COVER);
-            		    	potTile.setAlive(potTile.getAlive());
+            		    	potTile.setAlive(false);
             			}
             		}
             		
@@ -74,7 +73,7 @@ public class Listener implements MouseListener
             			if(potTile.getNum() == 0)
             			{
             				potTile.removeImage(COVER);
-            		    	potTile.setAlive(potTile.getAlive());
+            		    	potTile.setAlive(false);
             			}
             		}
             		
@@ -84,24 +83,26 @@ public class Listener implements MouseListener
             			if(potTile.getNum() == 0)
             			{
             				potTile.removeImage(COVER);
-            		    	potTile.setAlive(potTile.getAlive());
+            		    	potTile.setAlive(false);
             			}
             		}
             	}
             	else //Game Over Method should be added here
             	{
+    				tile.removeImage(COVER);
         			tile.placeImageOnTile(MINE);
             	}
+		    	tile.setAlive(false);
         	}
-    		else //If right click
+    		else if(SwingUtilities.isRightMouseButton(evt)) //If right click
         	{
         		switch(tile.getIconType())
         		{
-    	    		
     				case COVER:
     					tile.placeImageOnTile(FLAG);
     					break;
     				case FLAG:
+    					tile.removeImage(FLAG);
     					tile.placeImageOnTile(QUESTION);
     					break;  
     				case QUESTION:
@@ -112,7 +113,6 @@ public class Listener implements MouseListener
     	}
     	
     }
-  
     @Override
     public void mouseClicked(MouseEvent arg0){}
 

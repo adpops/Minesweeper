@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 public abstract class MinesweeperImages 
 {
-	private Image img;
+	public Image img;
 	
 	public Image getImage()
 	{

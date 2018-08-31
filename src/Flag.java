@@ -5,7 +5,6 @@ import javax.swing.ImageIcon;
 
 public class Flag extends MinesweeperImages
 {
-	private Image img;	
 	public Flag()
 	{
 		img = setImage();

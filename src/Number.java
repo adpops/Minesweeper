@@ -4,7 +4,6 @@ import javax.swing.ImageIcon;
 
 public class Number extends MinesweeperImages
 {
-	private Image img;
 	private int num;
 	
 	public Number(int num)
@@ -44,10 +43,15 @@ public class Number extends MinesweeperImages
                 filename += "Eight";
                 break;
         }
-        filename += ".png";
+        
+        if(num > 0)
+        {
+        	filename += ".png";
 
-        URL urlPieceImg = getClass().getResource("images/" + filename);
-        return new ImageIcon(urlPieceImg).getImage();        
+            URL urlPieceImg = getClass().getResource("images/" + filename);
+            return new ImageIcon(urlPieceImg).getImage();        
+        }
+        return null;
     }
 	
 	public int getNumber()

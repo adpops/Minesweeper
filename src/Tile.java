@@ -17,7 +17,6 @@ public class Tile extends JPanel
 	private ImageIcon mineImg;
 	private Listener listener;
 	private boolean alive;
-	private boolean containsMine;
 	private int x;
 	private int y;
 	private int iconType;
@@ -28,14 +27,16 @@ public class Tile extends JPanel
 	private final int QUESTION = 3;
 	private final int MINE = 4;
 	
+	//Class for eaach of the tiles on gameboard
 	public Tile(int number, int x, int y, Board board)
 	{
+		//Coordinates will start from top left at (0, 0) and then next tiles will be (0, 1) and (1, 0) down to the last tile
 		this.x = x;
 		this.y = y;
 		
 		//Number image code
-		this.num = new Number(number);
-		numImg = (num.getNumber() != 0 && num.getNumber() != -1) ? num.getImageIcon() : null;
+		num = new Number(number);
+		numImg = num.getImageIcon();
 		
 		//Flag image code
 		flag = new Flag();
@@ -47,8 +48,7 @@ public class Tile extends JPanel
 		placeImageOnTile(COVER);
 		
 		//Mine image code
-		containsMine = (num.getNumber() == -1) ? true : false;
-		if(containsMine)
+		if(num.getNumber() == -1)
 		{
 			mine = new Mine();
 			mineImg = mine.getImageIcon();
@@ -86,11 +86,6 @@ public class Tile extends JPanel
 		this.add(imageLbl);
 	}
 	
-	public boolean getContainsMine()
-	{
-		return containsMine;
-	}
-	
 	public int getNum()
 	{
 		return num.getNumber();
@@ -121,14 +116,17 @@ public class Tile extends JPanel
 		JLabel imageLbl = new JLabel(coverImg);
 		switch(type)
 		{
+			case COVER:
+				imageLbl = new JLabel(coverImg);
+				break;
 			case NUMBER:
 				imageLbl = new JLabel(numImg);
 				break;
 			case FLAG:
 				imageLbl = new JLabel(flagImg);
 				break;
-			case COVER:
-				imageLbl = new JLabel(coverImg);
+			case QUESTION:
+				imageLbl = new JLabel(questionImg);
 				break;
 			case MINE:
 				imageLbl = new JLabel(mineImg);
@@ -142,4 +140,3 @@ public class Tile extends JPanel
 		return iconType;
 	}
 }
-

@@ -48,6 +48,7 @@ public class GUI
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.getContentPane().setLayout(cards);
         
+        //Gets the size of the frame. Used in positioning other objects on frame
         frameX = f.getWidth();
 		frameY = f.getHeight();	
        
