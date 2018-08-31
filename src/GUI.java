@@ -114,6 +114,17 @@ public class GUI
         loginRegBtn.setBounds(loginBtnX, loginBtnY + 120, loginBtnWidth, loginBtnHeight);
         login.add(loginRegBtn);
         
+        JButton loginExitBtn = new JButton("Exit");
+        loginExitBtn.addActionListener(new ActionListener() 
+        {
+        	public void actionPerformed(ActionEvent e) 
+        	{
+        		System.exit(0);
+        	}
+        });
+        loginExitBtn.setBounds(loginBtnX, loginBtnY + 220, loginBtnWidth, loginBtnHeight);
+        login.add(loginExitBtn);
+        
         
         
         /**********************/
