@@ -118,6 +118,7 @@ public class Tile extends JPanel
 		{
 			case COVER:
 				imageLbl = new JLabel(coverImg);
+				listener.tileCheck();
 				break;
 			case NUMBER:
 				imageLbl = new JLabel(numImg);

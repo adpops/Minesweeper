@@ -40,51 +40,12 @@ public class Listener implements MouseListener
         		if(num != -1) //If it contains a mine, game over
             	{
         			tile.setAlive(false); //sets it so program knows that tile has been clicked before
+
+        			potTile.removeImage(COVER);
+        			
             		if(num != 0)
             		{
-        				potTile.removeImage(COVER);
             			tile.placeImageOnTile(NUMBER);
-            		}
-            		
-            		//These 4 for loops go through the 8 squares surrounding the clicked tile and see if they are 
-            		for(int i = -1; i <= 1; i+=2)
-            		{
-            			potTile = tileList[tile.getX() + i][tile.getY()];
-            			if(potTile.getNum() == 0)
-            			{
-            				potTile.removeImage(COVER);
-            		    	potTile.setAlive(false);
-            			}
-            		}
-            		
-            		for(int i = -1; i <= 1; i+=2)
-            		{
-            			potTile = tileList[tile.getX()][tile.getY() + i];
-            			if(potTile.getNum() == 0)
-            			{
-            				potTile.removeImage(COVER);
-            		    	potTile.setAlive(false);
-            			}
-            		}
-            		
-            		for(int i = -1; i <= 1; i+=2)
-            		{
-            			potTile = tileList[tile.getX() + i][tile.getY() + i];
-            			if(potTile.getNum() == 0)
-            			{
-            				potTile.removeImage(COVER);
-            		    	potTile.setAlive(false);
-            			}
-            		}
-            		
-            		for(int i = -1; i <= 1; i+=2)
-            		{
-            			potTile = tileList[tile.getX() - i][tile.getY() + i];
-            			if(potTile.getNum() == 0)
-            			{
-            				potTile.removeImage(COVER);
-            		    	potTile.setAlive(false);
-            			}
             		}
             	}
             	else //Game Over Method should be added here
@@ -113,6 +74,51 @@ public class Listener implements MouseListener
     	}
     	
     }
+	
+	public void tileCheck()
+	{
+		//These 4 for loops go through the 8 squares surrounding the clicked tile and see if they are 
+		for(int i = -1; i <= 1; i+=2)
+		{
+			potTile = tileList[tile.getX() + i][tile.getY()];
+			if(potTile.getNum() == 0)
+			{
+				potTile.removeImage(COVER);
+		    	potTile.setAlive(false);
+			}
+		}
+		
+		for(int i = -1; i <= 1; i+=2)
+		{
+			potTile = tileList[tile.getX()][tile.getY() + i];
+			if(potTile.getNum() == 0)
+			{
+				potTile.removeImage(COVER);
+		    	potTile.setAlive(false);
+			}
+		}
+		
+		for(int i = -1; i <= 1; i+=2)
+		{
+			potTile = tileList[tile.getX() + i][tile.getY() + i];
+			if(potTile.getNum() == 0)
+			{
+				potTile.removeImage(COVER);
+		    	potTile.setAlive(false);
+			}
+		}
+		
+		for(int i = -1; i <= 1; i+=2)
+		{
+			potTile = tileList[tile.getX() - i][tile.getY() + i];
+			if(potTile.getNum() == 0)
+			{
+				potTile.removeImage(COVER);
+		    	potTile.setAlive(false);
+			}
+		}
+	}
+	
     @Override
     public void mouseClicked(MouseEvent arg0){}
 
