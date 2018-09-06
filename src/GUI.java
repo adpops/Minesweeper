@@ -1,13 +1,12 @@
-import java.awt.GridLayout;
-import java.awt.Toolkit;
+
 
 import javax.swing.JFrame;
+
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.awt.Color;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -31,16 +30,20 @@ public class GUI
 	
 	private int frameX;
 	private int frameY;
-	private int loginFieldWidth;
+	
+	private int defaultFieldWidth = 200;
+	private int defaultFieldHeight = 35;
+	
+	private int defaultLblWidth = 100;
+	private int defaultLblHeight = 25;
+
+	private int defaultBtnWidth = 150;
+	private int defaultBtnHeight = 35;
 	
 	CardLayout cards = new CardLayout();
 
 	public GUI()
-	{
-		//length and width of board, will determine how many tiles are created. Inputed by user during difficulty selection.
-		int height = 1;
-		int width = 1;
-	
+	{	
 		//This will create the window
 		f.setResizable(false);
         f.setSize(1600, 900);
@@ -53,11 +56,9 @@ public class GUI
 		frameY = f.getHeight();	
        
         loginPanel();
-        startMenuPanel();
         gamePanel();
+        startMenuPanel();
         registerPanel();
-        
-        board = new Board(width, height);
 	}
 	
 	private void loginPanel()
@@ -67,8 +68,8 @@ public class GUI
 		login.setLayout(null);
 		
 		//Create Login Fields 
-	    loginFieldWidth = 130;
-	    int loginFieldHeight = 35;
+	    int loginFieldWidth = defaultFieldWidth;
+	    int loginFieldHeight = defaultFieldHeight;
 	    int loginFieldX = (frameX - loginFieldWidth)/2;
 	    int loginFieldY = (frameY - loginFieldHeight)/2;
 	    
@@ -82,8 +83,8 @@ public class GUI
 	    login.add(loginPass);
 		   
 		//Create Username and Password Labels
-		int loginLblWidth = 100;
-		int loginLblHeight = 25;
+		int loginLblWidth = defaultLblWidth;
+		int loginLblHeight = defaultLblHeight;
 		int loginLblX = loginFieldX - 110;
 		int loginLblY = loginFieldY;
 		
@@ -98,8 +99,8 @@ public class GUI
 		login.add(loginPassLbl);
 		 
 		//Create Login and Register Buttons  
-		int loginBtnWidth = 120;
-		int loginBtnHeight = 35;
+		int loginBtnWidth = defaultBtnWidth;
+		int loginBtnHeight = defaultBtnHeight;
 		int loginBtnX = loginFieldX + (loginFieldWidth - loginBtnWidth)/2;
 		int loginBtnY = loginFieldY + 30;
 		
@@ -125,6 +126,17 @@ public class GUI
 		loginRegBtn.setBounds(loginBtnX, loginBtnY + 120, loginBtnWidth, loginBtnHeight);
 		login.add(loginRegBtn);
 		
+		JButton loginLeaderBtn = new JButton("Leaderboard");
+		loginLeaderBtn.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				System.exit(0);
+			}
+		});
+		loginLeaderBtn.setBounds(loginBtnX, loginBtnY + 220, loginBtnWidth, loginBtnHeight);
+		login.add(loginLeaderBtn);
+		
 		JButton loginExitBtn = new JButton("Exit");
 		loginExitBtn.addActionListener(new ActionListener() 
 		{
@@ -133,7 +145,7 @@ public class GUI
 				System.exit(0);
 			}
 		});
-		loginExitBtn.setBounds(loginBtnX, loginBtnY + 220, loginBtnWidth, loginBtnHeight);
+		loginExitBtn.setBounds(loginBtnX, loginBtnY + 270, loginBtnWidth, loginBtnHeight);
 		login.add(loginExitBtn);
 	}
 	
@@ -141,12 +153,60 @@ public class GUI
 	{
 		startMenu = new JPanel();
         f.getContentPane().add(startMenu, "START");
+        startMenu.setLayout(null);
+        
+        //Create Login and Register Buttons  
+  		int startBtnWidth = defaultBtnWidth;
+  		int startBtnHeight = defaultBtnHeight;
+  		int startBtnX = (frameX - startBtnWidth) / 4;
+  		//int startBtnX = (frameX / 3) - (startBtnWidth / 2);
+  		int startBtnY = (frameY - startBtnHeight) / 2;
+        
+        JButton startBtnBeginner = new JButton("Beginner");
+        startBtnBeginner.addActionListener(new ActionListener() 
+        {
+        	public void actionPerformed(ActionEvent e) 
+        	{
+        		board = new Board(8, 8, 10);
+        		game.add(board, BorderLayout.CENTER);
+				cards.show(f.getContentPane(), "GAME");
+        	}
+        });
+        startBtnBeginner.setBounds(startBtnX, startBtnY, startBtnWidth, startBtnHeight);
+        startMenu.add(startBtnBeginner);
+
+        JButton startBtnIntermediate = new JButton("Intermediate");
+        startBtnIntermediate.addActionListener(new ActionListener() 
+        {
+        	public void actionPerformed(ActionEvent e) 
+        	{
+        		board = new Board(16, 16, 40);
+        		game.add(board, BorderLayout.CENTER);
+				cards.show(f.getContentPane(), "GAME");
+        	}
+        });
+        startBtnIntermediate.setBounds(startBtnX * 2, startBtnY, startBtnWidth, startBtnHeight);
+        startMenu.add(startBtnIntermediate);
+        
+        JButton startBtnExpert = new JButton("Expert");
+        startBtnExpert.addActionListener(new ActionListener() 
+        {
+        	public void actionPerformed(ActionEvent e) 
+        	{
+        		board = new Board(24, 24, 99);
+        		game.add(board, BorderLayout.CENTER);
+				cards.show(f.getContentPane(), "GAME");
+        	}
+        });
+        startBtnExpert.setBounds(startBtnX * 3, startBtnY, startBtnWidth, startBtnHeight);
+        startMenu.add(startBtnExpert);
 	}
 	
 	private void gamePanel() 
 	{
 		game = new JPanel();
         f.getContentPane().add(game, "GAME");
+        game.setLayout(null);
 	}
 	
 	private void registerPanel()
@@ -156,23 +216,23 @@ public class GUI
         register.setLayout(null);
         
         //Create Register Fields 
-        int regFieldWidth= 130;
-        int regFieldHeight = 35;
-        int regFieldX = (frameX - loginFieldWidth)/2;
+        int regFieldWidth= defaultFieldWidth;
+        int regFieldHeight = defaultFieldHeight;
+        int regFieldX = (frameX - regFieldWidth)/2;
         int regFieldY = (frameY - regFieldHeight)/2;
         
         regUser = new JTextField();
-        regUser.setBounds(regFieldX, regFieldY - 30, loginFieldWidth, regFieldHeight);
+        regUser.setBounds(regFieldX, regFieldY - 30, regFieldWidth, regFieldHeight);
         register.add(regUser);
         regUser.setColumns(10);
         
         regPass = new JPasswordField();
-        regPass.setBounds(regFieldX, regFieldY + 30, loginFieldWidth, regFieldHeight);
+        regPass.setBounds(regFieldX, regFieldY + 30, regFieldWidth, regFieldHeight);
         register.add(regPass);
        
         //Create Username and Password Labels
-        int regLblWidth = 100;
-        int regLblHeight = 25;
+        int regLblWidth = defaultLblWidth;
+        int regLblHeight = defaultLblHeight;
         int regLblX = regFieldX - 110;
         int regLblY = regFieldY;
         
@@ -187,8 +247,8 @@ public class GUI
         register.add(regPassLbl);
          
         //Create Register and Back Buttons  
-        int regBtnWidth = 150;
-        int regBtnHeight = 35;
+        int regBtnWidth = defaultBtnWidth;
+        int regBtnHeight = defaultBtnHeight;
         int regBtnX = regFieldX + (regFieldWidth- regBtnWidth)/2;
         int regBtnY = regFieldY + 30;
         

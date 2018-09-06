@@ -6,7 +6,7 @@ public class Logic
 	
 	public Logic()
 	{
-		GUI board = new GUI();
+		GUI gui = new GUI();
 	}
 	
 	public static void main(String [] args)

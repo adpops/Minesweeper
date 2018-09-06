@@ -1,3 +1,5 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
@@ -34,6 +36,10 @@ public class Tile extends JPanel
 		this.x = x;
 		this.y = y;
 		
+		setLayout(new BorderLayout());
+		
+		setBackground(new Color(190, 190, 190));
+		/*
 		//Number image code
 		num = new Number(number);
 		numImg = num.getImageIcon();
@@ -57,6 +63,7 @@ public class Tile extends JPanel
 		//each tile needs it's own listener, that way I know which tile is being clicked on
 		listener = new Listener(this, board);
 	    this.addMouseListener(listener);
+	    */
 	}
 
 	//This will place the correct image on a tile depending on the 'type' specified
