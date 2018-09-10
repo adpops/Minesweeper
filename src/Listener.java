@@ -29,6 +29,8 @@ public class Listener implements MouseListener
 	@Override 
     public void mousePressed(MouseEvent evt) 
     {
+		System.out.println(tileList.length);
+
     	alive = tile.getAlive();
     	if(alive) //If the tile has already been clicked, don't do anything
     	{

@@ -37,7 +37,6 @@ public class Board extends JPanel
 				tile = new Tile(number, x, y, this);
 	            this.add(tile);
 	            tileList[x][y] = tile;
-				System.out.println(x);
 			}
 		}
 	}

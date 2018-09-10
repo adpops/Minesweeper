@@ -28,6 +28,10 @@ public class GUI
 	private JTextField regUser;
 	private JPasswordField regPass;
 	
+	private int width;
+	private int height;
+	private int mines;
+	
 	private int frameX;
 	private int frameY;
 	
@@ -167,7 +171,9 @@ public class GUI
         {
         	public void actionPerformed(ActionEvent e) 
         	{
-        		board = new Board(8, 8, 10);
+        		width = 8;
+        		height = 8;
+        		mines = 10;
         		game.add(board, BorderLayout.CENTER);
 				cards.show(f.getContentPane(), "GAME");
         	}
@@ -180,7 +186,9 @@ public class GUI
         {
         	public void actionPerformed(ActionEvent e) 
         	{
-        		board = new Board(16, 16, 40);
+        		width = 16;
+        		height = 16;
+        		mines = 40;
         		game.add(board, BorderLayout.CENTER);
 				cards.show(f.getContentPane(), "GAME");
         	}
@@ -193,7 +201,9 @@ public class GUI
         {
         	public void actionPerformed(ActionEvent e) 
         	{
-        		board = new Board(24, 24, 99);
+        		width = 24;
+        		height = 24;
+        		mines = 99;
         		game.add(board, BorderLayout.CENTER);
 				cards.show(f.getContentPane(), "GAME");
         	}
@@ -206,7 +216,8 @@ public class GUI
 	{
 		game = new JPanel();
         f.getContentPane().add(game, "GAME");
-        game.setLayout(null);
+		board = new Board(width, height, mines);
+        game.add(board);
 	}
 	
 	private void registerPanel()
