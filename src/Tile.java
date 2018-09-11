@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -38,7 +39,7 @@ public class Tile extends JPanel
 		
 		setLayout(new BorderLayout());
 		
-		setBackground(new Color(190, 190, 190));
+		setBackground(new Color(255, 0, 0));
 		/*
 		//Number image code
 		num = new Number(number);
@@ -64,6 +65,7 @@ public class Tile extends JPanel
 		listener = new Listener(this, board);
 	    this.addMouseListener(listener);
 	    */
+	    this.setBorder(BorderFactory.createEmptyBorder(0,10,10,10)); 
 	}
 
 	//This will place the correct image on a tile depending on the 'type' specified
