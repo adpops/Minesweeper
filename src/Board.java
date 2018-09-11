@@ -16,7 +16,7 @@ public class Board extends JPanel
 		this.width = width;
 		this.height = height;
 		this.mines = mines;
-		this.setLayout(new GridLayout(width, height));
+		this.setLayout(new GridLayout(width, height	));
 		
 		tileList = new Tile[width][height];
 		
