@@ -60,7 +60,6 @@ public class GUI
 		frameY = f.getHeight();	
        
         loginPanel();
-        gamePanel();
         startMenuPanel();
         registerPanel();
 	}
@@ -174,8 +173,10 @@ public class GUI
         		width = 8;
         		height = 8;
         		mines = 10;
-        		game.add(board, BorderLayout.CENTER);
-				cards.show(f.getContentPane(), "GAME");
+        		
+        		board = new Board(width, height, mines);
+                f.getContentPane().add(board, "BOARD");
+        		cards.show(f.getContentPane(), "BOARD");        
         	}
         });
         startBtnBeginner.setBounds(startBtnX, startBtnY, startBtnWidth, startBtnHeight);
@@ -189,9 +190,10 @@ public class GUI
         		width = 16;
         		height = 16;
         		mines = 40;
-        		game.add(board, BorderLayout.CENTER);
-				cards.show(f.getContentPane(), "GAME");
-        	}
+        		
+        		board = new Board(width, height, mines);
+                f.getContentPane().add(board, "BOARD");
+        		cards.show(f.getContentPane(), "BOARD");			}
         });
         startBtnIntermediate.setBounds(startBtnX * 2, startBtnY, startBtnWidth, startBtnHeight);
         startMenu.add(startBtnIntermediate);
@@ -204,20 +206,13 @@ public class GUI
         		width = 24;
         		height = 24;
         		mines = 99;
-        		game.add(board, BorderLayout.CENTER);
-				cards.show(f.getContentPane(), "GAME");
-        	}
+        		
+        		board = new Board(width, height, mines);
+                f.getContentPane().add(board, "BOARD");
+        		cards.show(f.getContentPane(), "BOARD");        	}
         });
         startBtnExpert.setBounds(startBtnX * 3, startBtnY, startBtnWidth, startBtnHeight);
         startMenu.add(startBtnExpert);
-	}
-	
-	private void gamePanel() 
-	{
-		game = new JPanel();
-        f.getContentPane().add(game, "GAME");
-		board = new Board(width, height, mines);
-        game.add(board);
 	}
 	
 	private void registerPanel()
