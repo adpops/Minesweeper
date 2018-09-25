@@ -49,8 +49,8 @@ public class GUI
 	public GUI()
 	{	
 		//This will create the window
-		f.setResizable(false);
-        f.setSize(1600, 900);
+		f.setResizable(true);
+        f.setSize(800, 1000);
         f.setTitle("Minesweeper");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.getContentPane().setLayout(cards);
@@ -61,7 +61,9 @@ public class GUI
        
         loginPanel();
         startMenuPanel();
+        gamePanel();
         registerPanel();
+        f.setSize(800, 1000);
 	}
 	
 	private void loginPanel()
@@ -165,8 +167,8 @@ public class GUI
   		//int startBtnX = (frameX / 3) - (startBtnWidth / 2);
   		int startBtnY = (frameY - startBtnHeight) / 2;
         
-        JButton startBtnBeginner = new JButton("Beginner");
-        startBtnBeginner.addActionListener(new ActionListener() 
+        JButton startBeginnerBtn = new JButton("Beginner");
+        startBeginnerBtn.addActionListener(new ActionListener() 
         {
         	public void actionPerformed(ActionEvent e) 
         	{
@@ -175,15 +177,15 @@ public class GUI
         		mines = 10;
         		
         		board = new Board(width, height, mines);
-                f.getContentPane().add(board, "BOARD");
-        		cards.show(f.getContentPane(), "BOARD");        
+                game.add(board, BorderLayout.CENTER);
+        		cards.show(f.getContentPane(), "GAME");        
         	}
         });
-        startBtnBeginner.setBounds(startBtnX, startBtnY, startBtnWidth, startBtnHeight);
-        startMenu.add(startBtnBeginner);
+        startBeginnerBtn.setBounds(startBtnX, startBtnY, startBtnWidth, startBtnHeight);
+        startMenu.add(startBeginnerBtn);
 
-        JButton startBtnIntermediate = new JButton("Intermediate");
-        startBtnIntermediate.addActionListener(new ActionListener() 
+        JButton startIntermediateBtn = new JButton("Intermediate");
+        startIntermediateBtn.addActionListener(new ActionListener() 
         {
         	public void actionPerformed(ActionEvent e) 
         	{
@@ -192,14 +194,15 @@ public class GUI
         		mines = 40;
         		
         		board = new Board(width, height, mines);
-                f.getContentPane().add(board, "BOARD");
-        		cards.show(f.getContentPane(), "BOARD");			}
+                game.add(board, BorderLayout.CENTER);
+        		cards.show(f.getContentPane(), "GAME");			
+        	}
         });
-        startBtnIntermediate.setBounds(startBtnX * 2, startBtnY, startBtnWidth, startBtnHeight);
-        startMenu.add(startBtnIntermediate);
+        startIntermediateBtn.setBounds(startBtnX * 2, startBtnY, startBtnWidth, startBtnHeight);
+        startMenu.add(startIntermediateBtn);
         
-        JButton startBtnExpert = new JButton("Expert");
-        startBtnExpert.addActionListener(new ActionListener() 
+        JButton startExpertBtn = new JButton("Expert");
+        startExpertBtn.addActionListener(new ActionListener() 
         {
         	public void actionPerformed(ActionEvent e) 
         	{
@@ -208,11 +211,31 @@ public class GUI
         		mines = 99;
         		
         		board = new Board(width, height, mines);
-                f.getContentPane().add(board, "BOARD");
-        		cards.show(f.getContentPane(), "BOARD");        	}
+                game.add(board, BorderLayout.CENTER);
+        		cards.show(f.getContentPane(), "GAME");      	
+        	}
         });
-        startBtnExpert.setBounds(startBtnX * 3, startBtnY, startBtnWidth, startBtnHeight);
-        startMenu.add(startBtnExpert);
+        startExpertBtn.setBounds(startBtnX * 3, startBtnY, startBtnWidth, startBtnHeight);
+        startMenu.add(startExpertBtn);
+        
+        JButton startExitBtn = new JButton("Exit");
+		startExitBtn.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+        		cards.show(f.getContentPane(), "LOGIN");        	
+			}
+		});
+		startExitBtn.setBounds(startBtnX * 2, frameY/2 + 270, startBtnWidth, startBtnHeight);
+		startMenu.add(startExitBtn);
+	}
+	
+	private void gamePanel() 
+	{
+		game = new JPanel();
+		game.setLayout(new BorderLayout());
+		f.getContentPane().add(game, "GAME");
+        
 	}
 	
 	private void registerPanel()

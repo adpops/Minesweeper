@@ -1,6 +1,8 @@
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.util.Random;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 //This class will create the gameboard
@@ -27,13 +29,12 @@ public class Board extends JPanel
 	{
 		Random rand = new Random();
 		Tile tile;
-		int number;
+		int number = 0;
 		
 		for(int x = 0; x < width; x++)
 		{
 			for(int y = 0; y < height; y++)
 			{
-				number = rand.nextInt(9 + 1) - 1;
 				tile = new Tile(number, x, y, this);
 	            this.add(tile);
 	            tileList[x][y] = tile;

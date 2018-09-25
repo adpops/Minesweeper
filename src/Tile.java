@@ -1,9 +1,12 @@
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Image;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -39,7 +42,12 @@ public class Tile extends JPanel
 		
 		setLayout(new BorderLayout());
 		
-		setBackground(new Color(255, 0, 0));
+		setBackground(new Color(255, 255, 0));
+		setPreferredSize(new Dimension(30, 30));
+		JButton loginStartBtn = new JButton("Login");
+		this.add(loginStartBtn);
+		
+	//	this.setBorder(BorderFactory.createStrokeBorder(new BasicStroke(5.0f)));		
 		/*
 		//Number image code
 		num = new Number(number);
