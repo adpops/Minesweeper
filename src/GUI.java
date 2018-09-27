@@ -164,7 +164,6 @@ public class GUI
   		int startBtnWidth = defaultBtnWidth;
   		int startBtnHeight = defaultBtnHeight;
   		int startBtnX = (frameX - startBtnWidth) / 4;
-  		//int startBtnX = (frameX / 3) - (startBtnWidth / 2);
   		int startBtnY = (frameY - startBtnHeight) / 2;
         
         JButton startBeginnerBtn = new JButton("Beginner");

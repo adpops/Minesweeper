@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -18,7 +19,7 @@ public class Board extends JPanel
 		this.width = width;
 		this.height = height;
 		this.mines = mines;
-		this.setLayout(new GridLayout(width, height));
+		setLayout(new GridLayout(width, height));
 		
 		tileList = new Tile[width][height];
 		
@@ -35,7 +36,17 @@ public class Board extends JPanel
 		{
 			for(int y = 0; y < height; y++)
 			{
+				/*
+				JPanel d = new JPanel();
+				d.setBackground(Color.WHITE);
+				if(y % 2 == 0)
+				{
+					d.setBackground(Color.RED);
+				}
+				this.add(d);
+				*/
 				tile = new Tile(number, x, y, this);
+				
 	            this.add(tile);
 	            tileList[x][y] = tile;
 			}

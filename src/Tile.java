@@ -40,13 +40,15 @@ public class Tile extends JPanel
 		this.x = x;
 		this.y = y;
 		
-		setLayout(new BorderLayout());
+		//setLayout(new BorderLayout());
 		
-		setBackground(new Color(255, 255, 0));
-		setPreferredSize(new Dimension(30, 30));
-		JButton loginStartBtn = new JButton("Login");
-		this.add(loginStartBtn);
+		/*setBackground(new Color(255, 255, 0));
 		
+		if(y % 2 == 0)
+		{
+			setBackground(Color.BLACK);
+		}*/
+				
 	//	this.setBorder(BorderFactory.createStrokeBorder(new BasicStroke(5.0f)));		
 		/*
 		//Number image code
@@ -73,7 +75,6 @@ public class Tile extends JPanel
 		listener = new Listener(this, board);
 	    this.addMouseListener(listener);
 	    */
-	    this.setBorder(BorderFactory.createEmptyBorder(0,10,10,10)); 
 	}
 
 	//This will place the correct image on a tile depending on the 'type' specified
