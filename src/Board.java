@@ -13,6 +13,15 @@ public class Board extends JPanel
 	private int width;
 	private int height;
 	private int mines;
+	private int surroundingMines;
+	
+	private Tile potTile;
+	
+	private final int COVER = 0;
+	private final int NUMBER = 1;
+	private final int FLAG = 2;
+	private final int QUESTION = 3;
+	private final int MINE = 4;
 	
 	public Board(int width, int height, int mines)
 	{
@@ -28,23 +37,19 @@ public class Board extends JPanel
 	
 	private void createBoard()
 	{
-		Random rand = new Random();
+		Random rand = new Random(64);
 		Tile tile;
 		int number = 0;
-		
+		rand = new Random(64);
+
 		for(int x = 0; x < width; x++)
 		{
 			for(int y = 0; y < height; y++)
-			{
-				/*
-				JPanel d = new JPanel();
-				d.setBackground(Color.WHITE);
-				if(y % 2 == 0)
+			{	
+				if(rand.nextInt() <= mines)
 				{
-					d.setBackground(Color.RED);
+					number = -1;
 				}
-				this.add(d);*/
-				
 				tile = new Tile(number, x, y, this);
 				
 	            this.add(tile);
@@ -53,6 +58,62 @@ public class Board extends JPanel
 		}
 	}
 	
+	public void tileCheck(Tile tile)
+	{
+		//These 4 for loops go through the 8 squares surrounding the clicked tile and see if they are 
+		for(int i = -1; i <= 1; i+=2)
+		{
+			potTile = tileList[tile.getTileX() + i][tile.getTileY()];
+			if(potTile.getNum() == 0)
+			{
+				potTile.removeImage(COVER);
+		    	potTile.setAlive(false);
+			}
+		}
+		
+		for(int i = -1; i <= 1; i+=2)
+		{
+			potTile = tileList[tile.getTileX()][tile.getTileY() + i];
+			if(potTile.getNum() != -1)
+			{
+				potTile.removeImage(COVER);
+		    	potTile.setAlive(false);
+			}
+		}
+		
+		for(int i = -1; i <= 1; i+=2)
+		{
+			potTile = tileList[tile.getTileX() + i][tile.getTileY() + i];
+			if(potTile.getNum() == 0)
+			{
+				potTile.removeImage(COVER);
+		    	potTile.setAlive(false);
+			}
+		}
+		
+		for(int i = -1; i <= 1; i+=2)
+		{
+			potTile = tileList[tile.getTileX() - i][tile.getTileY() + i];
+			if(potTile.getNum() == 0)
+			{
+				potTile.removeImage(COVER);
+		    	potTile.setAlive(false);
+			}
+		}
+	}
+	
+	private void removeCoverOrAddCount()
+	{
+		if(potTile.getNum() != -1)
+		{
+			potTile.removeImage(COVER);
+	    	potTile.setAlive(false);
+		}
+		else
+		{
+			surroundingMines++;
+		}
+	}
 	public Tile[][] getTileList()
 	{
 		return tileList;
