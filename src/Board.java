@@ -43,8 +43,8 @@ public class Board extends JPanel
 				{
 					d.setBackground(Color.RED);
 				}
-				this.add(d);
-				*/
+				this.add(d);*/
+				
 				tile = new Tile(number, x, y, this);
 				
 	            this.add(tile);

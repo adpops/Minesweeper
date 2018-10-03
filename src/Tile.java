@@ -1,12 +1,5 @@
-import java.awt.BasicStroke;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Image;
-
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -33,24 +26,27 @@ public class Tile extends JPanel
 	private final int QUESTION = 3;
 	private final int MINE = 4;
 	
-	//Class for eaach of the tiles on gameboard
+	//Class for each of the tiles on gameboard
 	public Tile(int number, int x, int y, Board board)
 	{
+		
 		//Coordinates will start from top left at (0, 0) and then next tiles will be (0, 1) and (1, 0) down to the last tile
 		this.x = x;
 		this.y = y;
 		
 		//setLayout(new BorderLayout());
 		
-		/*setBackground(new Color(255, 255, 0));
+		setBackground(new Color(255, 255, 0));
+		
 		
 		if(y % 2 == 0)
+		
 		{
 			setBackground(Color.BLACK);
-		}*/
-				
-	//	this.setBorder(BorderFactory.createStrokeBorder(new BasicStroke(5.0f)));		
-		/*
+		}
+		
+		/*		
+		
 		//Number image code
 		num = new Number(number);
 		numImg = num.getImageIcon();
@@ -109,12 +105,12 @@ public class Tile extends JPanel
 		return num.getNumber();
 	}
 	
-	public int getX()
+	public int getTileX()
 	{
 		return x;
 	}
 	
-	public int getY()
+	public int getTileY()
 	{
 		return y;
 	}
@@ -158,4 +154,5 @@ public class Tile extends JPanel
 	{
 		return iconType;
 	}
+	
 }

@@ -79,7 +79,7 @@ public class Listener implements MouseListener
 		//These 4 for loops go through the 8 squares surrounding the clicked tile and see if they are 
 		for(int i = -1; i <= 1; i+=2)
 		{
-			potTile = tileList[tile.getX() + i][tile.getY()];
+			potTile = tileList[tile.getTileX() + i][tile.getTileY()];
 			if(potTile.getNum() == 0)
 			{
 				potTile.removeImage(COVER);
@@ -89,7 +89,7 @@ public class Listener implements MouseListener
 		
 		for(int i = -1; i <= 1; i+=2)
 		{
-			potTile = tileList[tile.getX()][tile.getY() + i];
+			potTile = tileList[tile.getTileX()][tile.getTileY() + i];
 			if(potTile.getNum() == 0)
 			{
 				potTile.removeImage(COVER);
@@ -99,7 +99,7 @@ public class Listener implements MouseListener
 		
 		for(int i = -1; i <= 1; i+=2)
 		{
-			potTile = tileList[tile.getX() + i][tile.getY() + i];
+			potTile = tileList[tile.getTileX() + i][tile.getTileY() + i];
 			if(potTile.getNum() == 0)
 			{
 				potTile.removeImage(COVER);
@@ -109,7 +109,7 @@ public class Listener implements MouseListener
 		
 		for(int i = -1; i <= 1; i+=2)
 		{
-			potTile = tileList[tile.getX() - i][tile.getY() + i];
+			potTile = tileList[tile.getTileX() - i][tile.getTileY() + i];
 			if(potTile.getNum() == 0)
 			{
 				potTile.removeImage(COVER);
