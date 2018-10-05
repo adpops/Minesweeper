@@ -21,6 +21,8 @@ public class Tile extends JPanel
 	private int y;
 	private int iconType;
 	private Board board;
+	private boolean hasMine;
+	private int mineNumber;
 	
 	private final int COVER = 0;
 	private final int NUMBER = 1;
@@ -29,13 +31,14 @@ public class Tile extends JPanel
 	private final int MINE = 4;
 	
 	//Class for each of the tiles on gameboard
-	public Tile(int number, int x, int y, Board board)
+	public Tile(boolean hasMine, int x, int y, Board board)
 	{
 		
 		//Coordinates will start from top left at (0, 0) and then next tiles will be (0, 1) and (1, 0) down to the last tile
 		this.x = x;
 		this.y = y;
 		this.board = board;
+		this.hasMine = hasMine;
 		
 		setLayout(new BorderLayout());
 		
@@ -46,7 +49,7 @@ public class Tile extends JPanel
 		this.addMouseListener(listener);
 		
 		//Mine image code
-		if(number == -1)
+		if(hasMine == true)
 		{
 			mine = new Mine();
 			mineImg = mine.getImageIcon();
@@ -60,13 +63,11 @@ public class Tile extends JPanel
 		coverImg = cover.getImageIcon();
 		placeImageOnTile(COVER);
 		
-		setupNum(number);
+		board.tileCheck(this);
 	}
 
-	private void setupNum(int number)
-	{
-		board.tileCheck(this);
-		
+	public void setNum(int number)
+	{		
 		//Number image code
 		num = new Number(number);
 		numImg = num.getImageIcon();
@@ -154,4 +155,8 @@ public class Tile extends JPanel
 		return iconType;
 	}
 	
+	public boolean getHasMine()
+	{
+		return hasMine;
+	}
 }

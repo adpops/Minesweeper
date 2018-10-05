@@ -39,7 +39,7 @@ public class Board extends JPanel
 	{
 		Random rand = new Random(64);
 		Tile tile;
-		int number = 0;
+		boolean hasMine = false;
 		rand = new Random(64);
 
 		for(int x = 0; x < width; x++)
@@ -48,12 +48,13 @@ public class Board extends JPanel
 			{	
 				if(rand.nextInt() <= mines)
 				{
-					number = -1;
+					hasMine = true;
 				}
-				tile = new Tile(number, x, y, this);
+				tile = new Tile(hasMine, x, y, this);
 				
 	            this.add(tile);
 	            tileList[x][y] = tile;
+	            hasMine = false;
 			}
 		}
 	}
@@ -64,47 +65,33 @@ public class Board extends JPanel
 		for(int i = -1; i <= 1; i+=2)
 		{
 			potTile = tileList[tile.getTileX() + i][tile.getTileY()];
-			if(potTile.getNum() == 0)
-			{
-				potTile.removeImage(COVER);
-		    	potTile.setAlive(false);
-			}
+			removeCoverOrAddCount();
 		}
 		
 		for(int i = -1; i <= 1; i+=2)
 		{
 			potTile = tileList[tile.getTileX()][tile.getTileY() + i];
-			if(potTile.getNum() != -1)
-			{
-				potTile.removeImage(COVER);
-		    	potTile.setAlive(false);
-			}
+			removeCoverOrAddCount();
 		}
 		
 		for(int i = -1; i <= 1; i+=2)
 		{
 			potTile = tileList[tile.getTileX() + i][tile.getTileY() + i];
-			if(potTile.getNum() == 0)
-			{
-				potTile.removeImage(COVER);
-		    	potTile.setAlive(false);
-			}
+			removeCoverOrAddCount();
 		}
 		
 		for(int i = -1; i <= 1; i+=2)
 		{
 			potTile = tileList[tile.getTileX() - i][tile.getTileY() + i];
-			if(potTile.getNum() == 0)
-			{
-				potTile.removeImage(COVER);
-		    	potTile.setAlive(false);
-			}
+			removeCoverOrAddCount();
 		}
+		
+		tile.setNum(surroundingMines);
 	}
 	
 	private void removeCoverOrAddCount()
 	{
-		if(potTile.getNum() != -1)
+		if(potTile.getHasMine())
 		{
 			potTile.removeImage(COVER);
 	    	potTile.setAlive(false);
