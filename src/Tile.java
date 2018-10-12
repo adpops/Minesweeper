@@ -43,7 +43,8 @@ public class Tile extends JPanel
 		setLayout(new BorderLayout());
 		
 		setBackground(new Color(255, 255, 0));
-			
+		
+		/*	
 		//each tile needs it's own listener, that way I know which tile is being clicked on
 		listener = new Listener(this, board);
 		this.addMouseListener(listener);
@@ -61,7 +62,7 @@ public class Tile extends JPanel
 		//Tile cover image code
 		cover = new Cover();
 		coverImg = cover.getImageIcon();
-		placeImageOnTile(COVER);
+		placeImageOnTile(COVER);*/
 		
 		board.tileCheck(this);
 	}

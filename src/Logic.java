@@ -1,4 +1,3 @@
-
 public class Logic
 {
 	int mines = 0; 

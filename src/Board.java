@@ -59,42 +59,51 @@ public class Board extends JPanel
 		}
 	}
 	
-	public void tileCheck(Tile tile)
+	public void tileCheck(Tile tile) 
 	{
-		//These 4 for loops go through the 8 squares surrounding the clicked tile and see if they are 
-		for(int i = -1; i <= 1; i+=2)
-		{
-			potTile = tileList[tile.getTileX() + i][tile.getTileY()];
-			removeCoverOrAddCount();
-		}
+		int potX = 0;
+		int potY = 0;
 		
-		for(int i = -1; i <= 1; i+=2)
-		{
-			potTile = tileList[tile.getTileX()][tile.getTileY() + i];
-			removeCoverOrAddCount();
-		}
-		
-		for(int i = -1; i <= 1; i+=2)
-		{
-			potTile = tileList[tile.getTileX() + i][tile.getTileY() + i];
-			removeCoverOrAddCount();
-		}
-		
-		for(int i = -1; i <= 1; i+=2)
-		{
-			potTile = tileList[tile.getTileX() - i][tile.getTileY() + i];
-			removeCoverOrAddCount();
-		}
-		
-		tile.setNum(surroundingMines);
+			//These 4 for loops go through the 8 squares surrounding the clicked tile and see if they are 
+			for(int i = -1; i <= 1; i+=2)
+			{
+				potX = tile.getTileX() + i;
+				potY = tile.getTileY();
+				checkPotXAndY(potX, potY);
+			}
+			
+			for(int i = -1; i <= 1; i+=2)
+			{
+				potX = tile.getTileX();
+				potY = tile.getTileY() + i;
+				checkPotXAndY(potX, potY);
+			}
+			
+			for(int i = -1; i <= 1; i+=2)
+			{
+				potX = tile.getTileX() + i;
+				potY = tile.getTileY() + i;
+				checkPotXAndY(potX, potY);
+			}
+			
+			for(int i = -1; i <= 1; i+=2)
+			{
+				potX = tile.getTileX() - i;
+				potY = tile.getTileY() + i;
+				checkPotXAndY(potX, potY);
+			}
+			
+			tile.setNum(surroundingMines);
 	}
 	
 	private void removeCoverOrAddCount()
 	{
-		if(potTile.getHasMine())
+		if(true /*potTile.getHasMine()*/)
 		{
-			potTile.removeImage(COVER);
+			//potTile.removeImage(COVER);
+			
 	    	potTile.setAlive(false);
+	    	System.out.println(potTile);
 		}
 		else
 		{
@@ -104,6 +113,15 @@ public class Board extends JPanel
 	public Tile[][] getTileList()
 	{
 		return tileList;
+	}
+	
+	private void checkPotXAndY(int x, int y)
+	{
+		if(x < 8 && y < 8)
+		{
+			potTile = tileList[x][y];
+			removeCoverOrAddCount();
+		}
 	}
 	
 	
