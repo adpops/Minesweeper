@@ -73,8 +73,7 @@ public class Board extends JPanel
 			}
 			
 			for(int i = -1; i <= 1; i+=2)
-			{
-				potX = tile.getTileX();
+			{	potX = tile.getTileX();
 				potY = tile.getTileY() + i;
 				checkPotXAndY(potX, potY);
 			}
@@ -98,9 +97,9 @@ public class Board extends JPanel
 	
 	private void removeCoverOrAddCount()
 	{
-		if(true /*potTile.getHasMine()*/)
+		if(potTile.getHasMine())
 		{
-			//potTile.removeImage(COVER);
+			potTile.removeImage(COVER);
 			
 	    	potTile.setAlive(false);
 	    	System.out.println(potTile);
@@ -117,7 +116,7 @@ public class Board extends JPanel
 	
 	private void checkPotXAndY(int x, int y)
 	{
-		if(x < 8 && y < 8)
+		if((x < 8 && x > 0) && (y < 8 && y > 0))
 		{
 			potTile = tileList[x][y];
 			removeCoverOrAddCount();
