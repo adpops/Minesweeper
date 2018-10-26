@@ -9,17 +9,15 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
-public class LoginPanel extends JPanel
+public class LoginPanel extends PanelInterface
 {
 	private int generalTxtWidth;
 	private int generalTxtHeight;
-	private GUIHandler gui;
+	private GUIManager gui;
 	
-	public LoginPanel(GUIHandler gui)
+	public LoginPanel(GUIManager gui)
 	{
-		generalTxtWidth = gui.getGeneralTxtWidth();
-		generalTxtHeight = gui.getGeneralTxtHeight();
-		this.gui = gui;
+		super(gui);
 		createLoginPanel();
 	}
 	

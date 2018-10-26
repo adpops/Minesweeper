@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class GUIHandler 
+public class GUIManager 
 {
 	private JFrame frame;
 	private int frameWidth;
@@ -21,7 +21,7 @@ public class GUIHandler
 	private int generalTxtWidth = 150;
 	private int generalTxtHeight = 25;
 
-	public GUIHandler() 
+	public GUIManager() 
 	{
 		frameWidth = 400; 
 		frameHeight = 700;
@@ -61,7 +61,7 @@ public class GUIHandler
 			{
 				try 
 				{
-					GUIHandler window = new GUIHandler();
+					GUIManager window = new GUIManager();
 					window.frame.setVisible(true);
 				} 
 				catch (Exception e) 
