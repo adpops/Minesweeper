@@ -7,6 +7,8 @@ import javax.swing.JTextField;
 import java.awt.CardLayout;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JPasswordField;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -23,6 +25,16 @@ public class GUIManager
 
 	public GUIManager() 
 	{
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (Exception e) {
+		}
+		
 		frameWidth = 400; 
 		frameHeight = 700;
 		frame = new JFrame();
@@ -49,10 +61,12 @@ public class GUIManager
 	{
 		return frame;
 	}
+	
 	public void switchPanel(String cardName)
 	{
 		new CardLayout().show(frame.getContentPane(), cardName);
 	}
+	
 	public static void main(String[] args) 
 	{
 		EventQueue.invokeLater(new Runnable() 

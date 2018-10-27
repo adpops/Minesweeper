@@ -9,12 +9,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
-public class LoginPanel extends PanelInterface
+public class LoginPanel extends AbstractPanel
 {
-	private int generalTxtWidth;
-	private int generalTxtHeight;
-	private GUIManager gui;
-	
 	public LoginPanel(GUIManager gui)
 	{
 		super(gui);

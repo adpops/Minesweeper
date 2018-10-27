@@ -9,13 +9,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
-public class PanelInterface extends JPanel
+public abstract class AbstractPanel extends JPanel
 {
-	private int generalTxtWidth;
-	private int generalTxtHeight;
-	private GUIManager gui;
+	protected int generalTxtWidth;
+	protected int generalTxtHeight;
+	protected GUIManager gui;
 	
-	public PanelInterface(GUIManager gui)
+	public AbstractPanel(GUIManager gui)
 	{
 		generalTxtWidth = gui.getGeneralTxtWidth();
 		generalTxtHeight = gui.getGeneralTxtHeight();
