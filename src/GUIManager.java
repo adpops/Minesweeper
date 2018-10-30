@@ -22,19 +22,10 @@ public class GUIManager
 	private int frameHeight;
 	private int generalTxtWidth = 150;
 	private int generalTxtHeight = 25;
-
+	CardLayout cards = new CardLayout();
+	
 	public GUIManager() 
-	{
-		try {
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Nimbus".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            break;
-		        }
-		    }
-		} catch (Exception e) {
-		}
-		
+	{		
 		frameWidth = 400; 
 		frameHeight = 700;
 		frame = new JFrame();
@@ -44,7 +35,6 @@ public class GUIManager
 		frame.setResizable(false);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
 		LoginPanel loginPanel = new LoginPanel(this);
-		frame.getContentPane().add(loginPanel);
 	}
 
 	public int getGeneralTxtWidth()
@@ -64,9 +54,13 @@ public class GUIManager
 	
 	public void switchPanel(String cardName)
 	{
-		new CardLayout().show(frame.getContentPane(), cardName);
+		cards.show(frame.getContentPane(), cardName);
 	}
 	
+	public void addPanel(JPanel panel, String cardName)
+	{
+		frame.getContentPane().add(panel, cardName);
+	}
 	public static void main(String[] args) 
 	{
 		EventQueue.invokeLater(new Runnable() 

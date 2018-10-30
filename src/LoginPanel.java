@@ -11,10 +11,13 @@ import javax.swing.JTextPane;
 
 public class LoginPanel extends AbstractPanel
 {
+	String cardName = "login";
+
 	public LoginPanel(GUIManager gui)
 	{
 		super(gui);
 		createLoginPanel();
+		gui.addPanel(this, cardName);
 	}
 	
 	private void createLoginPanel() 
