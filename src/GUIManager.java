@@ -22,7 +22,9 @@ public class GUIManager
 	private int frameHeight;
 	private int generalTxtWidth = 150;
 	private int generalTxtHeight = 25;
-	CardLayout cards = new CardLayout();
+	private int generalBtnWidth = 120;
+	private int generalBtnHeight = 25;
+	CardLayout cards = new CardLayout(0, 0);
 	
 	public GUIManager() 
 	{		
@@ -33,8 +35,9 @@ public class GUIManager
 		frame.setTitle("Minesweeper");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		frame.getContentPane().setLayout(new CardLayout(0, 0));
+		frame.getContentPane().setLayout(cards);
 		LoginPanel loginPanel = new LoginPanel(this);
+		StartMenuPanel startMenuPanel = new StartMenuPanel(this);
 	}
 
 	public int getGeneralTxtWidth()
@@ -47,6 +50,25 @@ public class GUIManager
 		return generalTxtHeight;
 	}
 	
+	public int getGeneralBtnWidth()
+	{
+		return generalBtnWidth;
+	}
+	
+	public int getGeneralBtnHeight()
+	{
+		return generalBtnHeight;
+	}
+	
+	public int getFrameWidth()
+	{
+		return frameWidth;
+	}
+	
+	public int getFrameHeight()
+	{
+		return frameHeight;
+	}
 	public JFrame getFrame()
 	{
 		return frame;

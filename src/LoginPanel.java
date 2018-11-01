@@ -58,8 +58,8 @@ public class LoginPanel extends AbstractPanel
 	    loginPassPane.setEditable(false);;
 	    this.add(loginPassPane);
 	    
-	    int btnWidth = 120;
-	    int btnHeight = 25;
+	    int btnWidth = generalBtnWidth;
+	    int btnHeight = generalBtnHeight;
 	    int btnX = 125;
 	    int btnY = 260;
 	    JButton loginBtn = new JButton("Login");
