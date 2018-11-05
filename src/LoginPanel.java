@@ -16,11 +16,11 @@ public class LoginPanel extends AbstractPanel
 	public LoginPanel(GUIManager gui)
 	{
 		super(gui);
-		createLoginPanel();
+		createPanel();
 		gui.addPanel(this, cardName);
 	}
 	
-	private void createLoginPanel() 
+	private void createPanel() 
 	{
 		this.setLayout(null);
 		int txtWidth = generalTxtWidth;
@@ -78,6 +78,7 @@ public class LoginPanel extends AbstractPanel
 	    {
 	    	public void actionPerformed(ActionEvent e) 
 	    	{
+	    		gui.switchPanel("register");
 	    	}
 	    });
 	    registerBtn.setBounds(btnX, btnY + 40, btnWidth, btnHeight);
@@ -88,6 +89,7 @@ public class LoginPanel extends AbstractPanel
 	    {
 	    	public void actionPerformed(ActionEvent e) 
 	    	{
+	    		System.exit(1);
 	    	}
 	    });
 	    exitBtn.setBounds(btnX, btnY + 40*2, btnWidth, btnHeight);

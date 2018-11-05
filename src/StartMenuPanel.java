@@ -6,19 +6,16 @@ import javax.swing.JPanel;
 
 public class StartMenuPanel extends AbstractPanel 
 {
-	private int generalTxtWidth;
-	private int generalTxtHeight;
-	private GUIManager gui;
 	private String cardName = "startMenu";
 	
 	public StartMenuPanel(GUIManager gui)
 	{
 		super(gui);
-		createStartMenuPanel();
+		createPanel();
 		gui.addPanel(this, cardName);
 	}
 	
-	private void createStartMenuPanel()
+	private void createPanel()
 	{
 		this.setLayout(null);
 		int btnWidth = generalBtnWidth - 10;
@@ -30,7 +27,7 @@ public class StartMenuPanel extends AbstractPanel
 	    {
 	    	public void actionPerformed(ActionEvent e) 
 	    	{
-	    		//gui.switchPanel("startMenu");
+	    		gui.switchPanel("easy");
 	    	}
 	    });
 		easyBtn.setBounds(easyBtnX, btnY, btnWidth, btnHeight);
@@ -42,7 +39,7 @@ public class StartMenuPanel extends AbstractPanel
 	    {
 	    	public void actionPerformed(ActionEvent e) 
 	    	{
-	    		//gui.switchPanel("startMenu");
+	    		gui.switchPanel("intermediate");
 	    	}
 	    });
 		intermediateBtn.setBounds(intermediateBtnX, btnY, btnWidth, btnHeight);
@@ -54,7 +51,7 @@ public class StartMenuPanel extends AbstractPanel
 	    {
 	    	public void actionPerformed(ActionEvent e) 
 	    	{
-	    		//gui.switchPanel("startMenu");
+	    		gui.switchPanel("hard");
 	    	}
 	    });
 		hardBtn.setBounds(hardBtnX, btnY, btnWidth, btnHeight);
@@ -67,7 +64,7 @@ public class StartMenuPanel extends AbstractPanel
 	    {
 	    	public void actionPerformed(ActionEvent e) 
 	    	{
-	    		//gui.switchPanel("startMenu");
+	    		gui.switchPanel("login");
 	    	}
 	    });
 		backBtn.setBounds(backBtnX, backBtnY, btnWidth, btnHeight);
@@ -86,5 +83,4 @@ public class StartMenuPanel extends AbstractPanel
 		leaderboardBtn.setBounds(leaderboardBtnX, leaderboardBtnY, btnWidth, btnHeight);
 		this.add(leaderboardBtn);
 	}
-	
 }

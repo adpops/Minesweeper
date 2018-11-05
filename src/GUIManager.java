@@ -38,6 +38,7 @@ public class GUIManager
 		frame.getContentPane().setLayout(cards);
 		LoginPanel loginPanel = new LoginPanel(this);
 		StartMenuPanel startMenuPanel = new StartMenuPanel(this);
+		RegisterPanel registerPanel = new RegisterPanel(this);
 	}
 
 	public int getGeneralTxtWidth()
