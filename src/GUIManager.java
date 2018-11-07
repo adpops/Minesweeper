@@ -25,6 +25,7 @@ public class GUIManager
 	private int generalBtnWidth = 120;
 	private int generalBtnHeight = 25;
 	CardLayout cards = new CardLayout(0, 0);
+	Account acc;
 	
 	public GUIManager() 
 	{		
@@ -75,6 +76,16 @@ public class GUIManager
 		return frame;
 	}
 	
+	public Account getAccount()
+	{
+		return acc;
+	}
+	
+	public void setAccount(String username, String password)
+	{
+		acc = new Acc();
+	}
+	
 	public void switchPanel(String cardName)
 	{
 		cards.show(frame.getContentPane(), cardName);
@@ -84,6 +95,7 @@ public class GUIManager
 	{
 		frame.getContentPane().add(panel, cardName);
 	}
+	
 	public static void main(String[] args) 
 	{
 		EventQueue.invokeLater(new Runnable() 

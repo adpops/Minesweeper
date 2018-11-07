@@ -59,17 +59,30 @@ public class RegisterPanel extends AbstractPanel
 	    int btnWidth = generalBtnWidth + 10;
 	    int btnHeight = generalBtnHeight;
 	    int btnX = 125;
-	    int btnY = 260;
+	    int createBtnY = 260;
 	    JButton createAccBtn = new JButton("Create Account");
 	    createAccBtn.addActionListener(new ActionListener() 
 	    {
 	    	public void actionPerformed(ActionEvent e) 
 	    	{
+	    		Account acc = new Account(regUserPane.toString(), regPassPane.toString());
 	    		gui.switchPanel("startMenu");
 	    	}
 	    });
-	    createAccBtn.setBounds(btnX, btnY, btnWidth, btnHeight);
+	    createAccBtn.setBounds(btnX, createBtnY, btnWidth, btnHeight);
 	    this.add(createAccBtn);
-	
+	    
+	    int backBtnY = createBtnY + 40;
+	    JButton backBtn = new JButton("Back");
+	    backBtn.addActionListener(new ActionListener() 
+	    {
+	    	public void actionPerformed(ActionEvent e) 
+	    	{
+	    		gui.switchPanel("login");
+	    	}
+	    });
+	    backBtn.setBounds(btnX, backBtnY, btnWidth, btnHeight);
+	    this.add(backBtn);
+
 	}
 }
