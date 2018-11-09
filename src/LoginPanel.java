@@ -67,6 +67,7 @@ public class LoginPanel extends AbstractPanel
 	    {
 	    	public void actionPerformed(ActionEvent e) 
 	    	{
+	    		gui.setAccount(loginUserPane.toString(), loginPassPane.toString());
 	    		gui.switchPanel("startMenu");
 	    	}
 	    });

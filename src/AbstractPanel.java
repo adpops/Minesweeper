@@ -19,6 +19,7 @@ public abstract class AbstractPanel extends JPanel
 	protected int generalBtnWidth = 120;
 	protected int generalBtnHeight = 25;
 	protected GUIManager gui;
+	protected Account acc;
 	
 	public AbstractPanel(GUIManager gui)
 	{
@@ -29,5 +30,10 @@ public abstract class AbstractPanel extends JPanel
 		frameWidth = gui.getFrameWidth();
 		frameHeight = gui.getFrameHeight();
 		this.gui = gui;
+	}
+	
+	public void setAccount(Account acc)
+	{
+		this.acc = acc;
 	}
 }

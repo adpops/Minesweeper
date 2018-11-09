@@ -24,9 +24,14 @@ public class GUIManager
 	private int generalTxtHeight = 25;
 	private int generalBtnWidth = 120;
 	private int generalBtnHeight = 25;
-	CardLayout cards = new CardLayout(0, 0);
-	Account acc;
+	private Account acc;
+	private CardLayout cards = new CardLayout(0, 0);
 	
+	LoginPanel loginPanel;
+	RegisterPanel registerPanel;
+	StartMenuPanel startMenuPanel;
+	
+
 	public GUIManager() 
 	{		
 		frameWidth = 400; 
@@ -37,9 +42,9 @@ public class GUIManager
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.getContentPane().setLayout(cards);
-		LoginPanel loginPanel = new LoginPanel(this);
-		StartMenuPanel startMenuPanel = new StartMenuPanel(this);
-		RegisterPanel registerPanel = new RegisterPanel(this);
+		loginPanel = new LoginPanel(this);
+		registerPanel = new RegisterPanel(this);
+		startMenuPanel = new StartMenuPanel(this);
 	}
 
 	public int getGeneralTxtWidth()
@@ -71,11 +76,12 @@ public class GUIManager
 	{
 		return frameHeight;
 	}
+	
 	public JFrame getFrame()
 	{
 		return frame;
 	}
-	
+		
 	public Account getAccount()
 	{
 		return acc;
@@ -83,7 +89,8 @@ public class GUIManager
 	
 	public void setAccount(String username, String password)
 	{
-		acc = new Acc();
+		acc = new Account(username, password);
+		startMenuPanel.setAccount(acc);
 	}
 	
 	public void switchPanel(String cardName)

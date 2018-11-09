@@ -65,7 +65,7 @@ public class RegisterPanel extends AbstractPanel
 	    {
 	    	public void actionPerformed(ActionEvent e) 
 	    	{
-	    		Account acc = new Account(regUserPane.toString(), regPassPane.toString());
+	    		gui.setAccount(regUserPane.toString(), regPassPane.toString());
 	    		gui.switchPanel("startMenu");
 	    	}
 	    });
