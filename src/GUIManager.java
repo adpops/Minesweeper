@@ -25,6 +25,7 @@ public class GUIManager
 	private int generalBtnWidth = 120;
 	private int generalBtnHeight = 25;
 	private Account acc;
+	private int difficulty;
 	private CardLayout cards = new CardLayout(0, 0);
 	
 	LoginPanel loginPanel;
@@ -87,10 +88,20 @@ public class GUIManager
 		return acc;
 	}
 	
+	public int getDifficulty()
+	{
+		return difficulty;
+	}
+	
 	public void setAccount(String username, String password)
 	{
 		acc = new Account(username, password);
 		startMenuPanel.setAccount(acc);
+	}
+	
+	public void setDifficulty(int difficulty)
+	{
+		this.difficulty = difficulty;
 	}
 	
 	public void switchPanel(String cardName)
