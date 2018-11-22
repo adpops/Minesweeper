@@ -27,7 +27,9 @@ public class StartMenuPanel extends AbstractPanel
 	    {
 	    	public void actionPerformed(ActionEvent e) 
 	    	{
-	    		gui.switchPanel("easy");
+	    		gui.setDifficulty(0);
+	    		gui.initialize();
+	    		gui.switchPanel("boardPanel");
 	    	}
 	    });
 		easyBtn.setBounds(easyBtnX, btnY, btnWidth, btnHeight);
@@ -39,19 +41,23 @@ public class StartMenuPanel extends AbstractPanel
 	    {
 	    	public void actionPerformed(ActionEvent e) 
 	    	{
-	    		gui.switchPanel("intermediate");
+	    		gui.setDifficulty(1);
+	    		gui.initialize();
+	    		gui.switchPanel("boardPanel");
 	    	}
 	    });
 		intermediateBtn.setBounds(intermediateBtnX, btnY, btnWidth, btnHeight);
 		this.add(intermediateBtn);
 		
 		int hardBtnX = frameWidth - btnWidth - 20;
-		JButton hardBtn = new JButton("Hard");
+		JButton hardBtn = new JButton("Expert");
 		hardBtn.addActionListener(new ActionListener() 
 	    {
 	    	public void actionPerformed(ActionEvent e) 
 	    	{
-	    		gui.switchPanel("hard");
+	    		gui.setDifficulty(2);
+	    		gui.initialize();
+	    		gui.switchPanel("boardPanel");
 	    	}
 	    });
 		hardBtn.setBounds(hardBtnX, btnY, btnWidth, btnHeight);

@@ -31,7 +31,7 @@ public class GUIManager
 	LoginPanel loginPanel;
 	RegisterPanel registerPanel;
 	StartMenuPanel startMenuPanel;
-	
+	BoardPanel boardPanel;
 
 	public GUIManager() 
 	{		
@@ -48,6 +48,10 @@ public class GUIManager
 		startMenuPanel = new StartMenuPanel(this);
 	}
 
+	public void initialize()
+	{
+		boardPanel = new BoardPanel(this);
+	}
 	public int getGeneralTxtWidth()
 	{
 		return generalTxtWidth;

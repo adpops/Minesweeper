@@ -1,5 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Image;
+import java.net.URL;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,7 +23,7 @@ public class Tile extends JPanel
 	private int x;
 	private int y;
 	private int iconType;
-	private Board board;
+	private BoardPanel board;
 	private boolean hasMine;
 	private int mineNumber;
 	
@@ -31,19 +34,18 @@ public class Tile extends JPanel
 	private final int MINE = 4;
 	
 	//Class for each of the tiles on gameboard
-	public Tile(boolean hasMine, int x, int y, Board board)
+	public Tile(int x, int y, BoardPanel board)
 	{
 		
 		//Coordinates will start from top left at (0, 0) and then next tiles will be (0, 1) and (1, 0) down to the last tile
 		this.x = x;
 		this.y = y;
 		this.board = board;
-		this.hasMine = hasMine;
-		
+		hasMine = false;
 		setLayout(new BorderLayout());
 		
-		setBackground(new Color(255, 255, 0));
-		
+		coverImg = new ImageIcon(getImageForTile(COVER));
+		setImage(coverImg);
 		/*	
 		//each tile needs it's own listener, that way I know which tile is being clicked on
 		listener = new Listener(this, board);
@@ -64,43 +66,9 @@ public class Tile extends JPanel
 		coverImg = cover.getImageIcon();
 		placeImageOnTile(COVER);*/
 		
-		board.tileCheck(this);
+		//board.tileCheck(this);
 	}
 
-	public void setNum(int number)
-	{		
-		//Number image code
-		num = new Number(number);
-		numImg = num.getImageIcon();
-	}
-	
-	//This will place the correct image on a tile depending on the 'type' specified
-	public void placeImageOnTile(int type)
-	{
-		JLabel imageLbl = null;
-
-		switch(type)
-		{
-			case COVER:
-				imageLbl = new JLabel(coverImg);
-				break;
-			case NUMBER:
-				imageLbl = new JLabel(numImg);
-				break;
-			case FLAG:
-				imageLbl = new JLabel(flagImg);
-				break;
-			case QUESTION:
-				imageLbl = new JLabel(questionImg);
-				break;
-			case MINE:
-				imageLbl = new JLabel(mineImg);
-				break;
-		}
-		iconType = type;
-		this.add(imageLbl);
-	}
-	
 	public int getNum()
 	{
 		return num.getNumber();
@@ -121,10 +89,59 @@ public class Tile extends JPanel
 		return alive;
 	}
 	
+	
+	public int getIconType()
+	{
+		return iconType;
+	}
+	
+	public boolean getHasMine()
+	{
+		return hasMine;
+	}
+	
+	public void setMine()
+	{
+		hasMine = true;
+	}
+	
 	public void setAlive(boolean mode)
 	{
 		alive = mode;
 	}
+		
+	private void setImage(ImageIcon img)
+	{
+		JLabel imageLbl = new JLabel(img);
+		this.add(imageLbl);
+	}
+	private Image getImageForTile(int type) 
+    {
+        String filename = "";
+
+        switch (type) 
+        {
+            case COVER:
+                filename += "Cover";
+                break;
+            case NUMBER:
+                filename += "Number";
+                break;
+            case FLAG:
+                filename += "Flag";
+                break;
+            case QUESTION:
+                filename += "Question";
+                break;
+            case MINE:
+                filename += "Mine";
+                break;
+        }
+        filename += ".png";
+
+        URL urlPieceImg = getClass().getResource("images/" + filename);
+        return new ImageIcon(urlPieceImg).getImage();        
+    }
 	
 	public void removeImage(int type)
 	{
@@ -133,7 +150,7 @@ public class Tile extends JPanel
 		{
 			case COVER:
 				imageLbl = new JLabel(coverImg);
-				board.tileCheck(this);
+				//board.tileCheck(this);
 				break;
 			case NUMBER:
 				imageLbl = new JLabel(numImg);
@@ -150,14 +167,5 @@ public class Tile extends JPanel
 		}
 		this.remove(imageLbl);
 	}
-	
-	public int getIconType()
-	{
-		return iconType;
-	}
-	
-	public boolean getHasMine()
-	{
-		return hasMine;
-	}
+
 }
