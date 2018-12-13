@@ -28,7 +28,7 @@ public class StartMenuPanel extends AbstractPanel
 	    	public void actionPerformed(ActionEvent e) 
 	    	{
 	    		gui.setDifficulty(0);
-	    		gui.initialize();
+	    		gui.initializeBoard();
 	    		gui.switchPanel("boardPanel");
 	    	}
 	    });
@@ -42,7 +42,7 @@ public class StartMenuPanel extends AbstractPanel
 	    	public void actionPerformed(ActionEvent e) 
 	    	{
 	    		gui.setDifficulty(1);
-	    		gui.initialize();
+	    		gui.initializeBoard();
 	    		gui.switchPanel("boardPanel");
 	    	}
 	    });
@@ -56,7 +56,7 @@ public class StartMenuPanel extends AbstractPanel
 	    	public void actionPerformed(ActionEvent e) 
 	    	{
 	    		gui.setDifficulty(2);
-	    		gui.initialize();
+	    		gui.initializeBoard();
 	    		gui.switchPanel("boardPanel");
 	    	}
 	    });

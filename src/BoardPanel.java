@@ -11,19 +11,19 @@ public class BoardPanel extends AbstractPanel
 	private Tile [][] tilesWithMines;
 	private String cardName = "boardPanel";
 	
-	public BoardPanel(GUIManager gui) 
+	public BoardPanel(GUIManager gui, GameFrame game) 
 	{
 		super(gui);
-		gui.addPanel(this, cardName);
 		this.difficulty = gui.getDifficulty();
 		decideBoardDimensions();
 		setLayout(new GridLayout(width, height));
-		
-		tileList = new Tile[8][8];
+		tileList = new Tile[width][height];
 		tilesWithMines = new Tile[width][height];
 		
 		createPanel();
 		placeMines();
+		
+		game.add(this);
 	}
 	
 	private void createPanel()
@@ -35,7 +35,6 @@ public class BoardPanel extends AbstractPanel
 				Tile tile = new Tile(x, y, this);
 				this.add(tile);
 				tileList[x][y] = tile;
-				System.out.println(tileList.length);
 			}
 		}
 	}
@@ -83,5 +82,15 @@ public class BoardPanel extends AbstractPanel
 				numOfMinesPlaced++;
 			}
 		}
+	}
+	
+	public int getWidth()
+	{
+		return width;
+	}
+	
+	public int getHeight()
+	{
+		return height;
 	}
 }

@@ -28,10 +28,11 @@ public class GUIManager
 	private int difficulty;
 	private CardLayout cards = new CardLayout(0, 0);
 	
-	LoginPanel loginPanel;
-	RegisterPanel registerPanel;
-	StartMenuPanel startMenuPanel;
-	BoardPanel boardPanel;
+	private LoginPanel loginPanel;
+	private RegisterPanel registerPanel;
+	private StartMenuPanel startMenuPanel;
+	private GameFrame gameFrame;
+	private BoardPanel boardPanel;
 
 	public GUIManager() 
 	{		
@@ -43,14 +44,15 @@ public class GUIManager
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.getContentPane().setLayout(cards);
+		
 		loginPanel = new LoginPanel(this);
 		registerPanel = new RegisterPanel(this);
 		startMenuPanel = new StartMenuPanel(this);
 	}
 
-	public void initialize()
+	public void initializeBoard()
 	{
-		boardPanel = new BoardPanel(this);
+		gameFrame = new GameFrame(this);
 	}
 	public int getGeneralTxtWidth()
 	{
@@ -95,6 +97,11 @@ public class GUIManager
 	public int getDifficulty()
 	{
 		return difficulty;
+	}
+	
+	public BoardPanel getBoardPanel()
+	{
+		return boardPanel;
 	}
 	
 	public void setAccount(String username, String password)
