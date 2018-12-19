@@ -14,9 +14,11 @@ public class BoardPanel extends AbstractPanel
 	public BoardPanel(GUIManager gui, GameFrame game) 
 	{
 		super(gui);
-		this.difficulty = gui.getDifficulty();
-		decideBoardDimensions();
-		setLayout(new GridLayout(width, height));
+		width = game.getTileWidth();
+		height = game.getTileHeight();
+		numOfMines = game.getNumOfMines();
+		
+    	setLayout(new GridLayout(width, height, 3, 3));
 		tileList = new Tile[width][height];
 		tilesWithMines = new Tile[width][height];
 		
@@ -36,28 +38,6 @@ public class BoardPanel extends AbstractPanel
 				this.add(tile);
 				tileList[x][y] = tile;
 			}
-		}
-	}
-	
-	private void decideBoardDimensions()
-	{
-		switch(difficulty)
-		{
-			case 0:
-				width = 8;
-				height = 8;
-				numOfMines = 10;
-				break;
-			case 1:
-				width = 16;
-				height = 16;
-				numOfMines = 40;
-				break;
-			case 2:
-				width = 16;
-				height = 30;
-				numOfMines = 40;
-				break;
 		}
 	}
 	
