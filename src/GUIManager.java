@@ -99,11 +99,6 @@ public class GUIManager
 		return difficulty;
 	}
 	
-	public BoardPanel getBoardPanel()
-	{
-		return boardPanel;
-	}
-	
 	public void setAccount(String username, String password)
 	{
 		acc = new Account(username, password);

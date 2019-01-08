@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.Random;
 
@@ -17,8 +18,7 @@ public class BoardPanel extends AbstractPanel
 		width = game.getTileWidth();
 		height = game.getTileHeight();
 		numOfMines = game.getNumOfMines();
-		
-    	setLayout(new GridLayout(width, height, 3, 3));
+		setLayout(new GridLayout(width, height));
 		tileList = new Tile[width][height];
 		tilesWithMines = new Tile[width][height];
 		
@@ -35,6 +35,7 @@ public class BoardPanel extends AbstractPanel
 			for(int y = 0; y < height; y++)
 			{
 				Tile tile = new Tile(x, y, this);
+				tile.setBackground(Color.green);
 				this.add(tile);
 				tileList[x][y] = tile;
 			}
@@ -62,15 +63,5 @@ public class BoardPanel extends AbstractPanel
 				numOfMinesPlaced++;
 			}
 		}
-	}
-	
-	public int getWidth()
-	{
-		return width;
-	}
-	
-	public int getHeight()
-	{
-		return height;
 	}
 }
