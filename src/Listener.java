@@ -17,12 +17,11 @@ public class Listener implements MouseListener
 	private final int MINE = 4;
 
 	
-    public Listener(Tile tile, Board board) 
+    public Listener(Tile tile) 
     {
     	this.tile = tile;
         this.num = tile.getNum();
         tile.setAlive(true);
-		tileList = board.getTileList();
 		this.alive = tile.getAlive();
     }
 

@@ -27,7 +27,7 @@ public class GUIManager
 	private Account acc;
 	private int difficulty;
 	private CardLayout cards = new CardLayout(0, 0);
-	
+
 	private LoginPanel loginPanel;
 	private RegisterPanel registerPanel;
 	private StartMenuPanel startMenuPanel;
@@ -44,7 +44,7 @@ public class GUIManager
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.getContentPane().setLayout(cards);
-		
+
 		loginPanel = new LoginPanel(this);
 		registerPanel = new RegisterPanel(this);
 		startMenuPanel = new StartMenuPanel(this);
@@ -58,68 +58,68 @@ public class GUIManager
 	{
 		return generalTxtWidth;
 	}
-	
+
 	public int getGeneralTxtHeight()
 	{
 		return generalTxtHeight;
 	}
-	
+
 	public int getGeneralBtnWidth()
 	{
 		return generalBtnWidth;
 	}
-	
+
 	public int getGeneralBtnHeight()
 	{
 		return generalBtnHeight;
 	}
-	
+
 	public int getFrameWidth()
 	{
 		return frameWidth;
 	}
-	
+
 	public int getFrameHeight()
 	{
 		return frameHeight;
 	}
-	
+
 	public JFrame getFrame()
 	{
 		return frame;
 	}
-		
+
 	public Account getAccount()
 	{
 		return acc;
 	}
-	
+
 	public int getDifficulty()
 	{
 		return difficulty;
 	}
-	
+
 	public void setAccount(String username, String password)
 	{
 		acc = new Account(username, password);
 		startMenuPanel.setAccount(acc);
 	}
-	
+
 	public void setDifficulty(int difficulty)
 	{
 		this.difficulty = difficulty;
 	}
-	
+
 	public void switchPanel(String cardName)
 	{
 		cards.show(frame.getContentPane(), cardName);
 	}
-	
+
 	public void addPanel(JPanel panel, String cardName)
 	{
 		frame.getContentPane().add(panel, cardName);
 	}
-	
+
 	public static void main(String[] args) 
 	{
 		EventQueue.invokeLater(new Runnable() 

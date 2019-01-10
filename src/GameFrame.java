@@ -36,22 +36,22 @@ public class GameFrame extends JFrame
 	{
 		switch(difficulty)
 		{
-		case 0:
-			width = 8;
-			height = 8;
-			numOfMines = 10;
-			break;
-		case 1:
-			width = 16;
-			height = 16;
-			numOfMines = 40;
-			break;
-		case 2:
-			width = 16;
-			height = 30;
-			numOfMines = 40;
-			break;
-		}
+			case 0:
+				width = 8;
+				height = 8;
+				numOfMines = 10;
+				break;
+			case 1:
+				width = 16;
+				height = 16;
+				numOfMines = 40;
+				break;
+			case 2:
+				width = 16;
+				height = 30;
+				numOfMines = 40;
+				break;
+			}
 	}
 
 	public int getTileWidth()

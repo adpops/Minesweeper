@@ -11,7 +11,7 @@ public class BoardPanel extends AbstractPanel
 	private Tile [][] tileList;
 	private Tile [][] tilesWithMines;
 	private String cardName = "boardPanel";
-	
+
 	public BoardPanel(GUIManager gui, GameFrame game) 
 	{
 		super(gui);
@@ -21,13 +21,13 @@ public class BoardPanel extends AbstractPanel
 		setLayout(new GridLayout(width, height));
 		tileList = new Tile[width][height];
 		tilesWithMines = new Tile[width][height];
-		
+
 		createPanel();
 		placeMines();
-		
+
 		game.add(this);
 	}
-	
+
 	private void createPanel()
 	{
 		for(int x = 0; x < width; x++)
@@ -41,7 +41,7 @@ public class BoardPanel extends AbstractPanel
 			}
 		}
 	}
-	
+
 	private void placeMines()
 	{
 		Random rand = new Random();
@@ -50,7 +50,7 @@ public class BoardPanel extends AbstractPanel
 		int maxXValue = width;
 		int maxYValue = height;
 		int numOfMinesPlaced = 0;
-		
+
 		while(numOfMinesPlaced < numOfMines)
 		{
 			posX = rand.nextInt(maxXValue);

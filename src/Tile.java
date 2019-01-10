@@ -46,9 +46,9 @@ public class Tile extends JPanel
 		
 		coverImg = new ImageIcon(getImageForTile(COVER));
 		setImage(coverImg);
-		/*	
+			
 		//each tile needs it's own listener, that way I know which tile is being clicked on
-		listener = new Listener(this, board);
+		listener = new Listener(this);
 		this.addMouseListener(listener);
 		
 		//Mine image code
@@ -64,7 +64,7 @@ public class Tile extends JPanel
 		//Tile cover image code
 		cover = new Cover();
 		coverImg = cover.getImageIcon();
-		placeImageOnTile(COVER);*/
+		//placeImageOnTile(COVER);
 		
 		//board.tileCheck(this);
 	}
