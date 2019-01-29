@@ -20,7 +20,7 @@ public class Listener implements MouseListener
     public Listener(Tile tile) 
     {
     	this.tile = tile;
-        this.num = tile.getNum();
+        //this.num = tile.getNum();
         tile.setAlive(true);
 		this.alive = tile.getAlive();
     }
@@ -28,8 +28,6 @@ public class Listener implements MouseListener
 	@Override 
     public void mousePressed(MouseEvent evt) 
     {
-		System.out.println(tileList.length);
-
     	alive = tile.getAlive();
     	if(alive) //If the tile has already been clicked, don't do anything
     	{
@@ -38,18 +36,17 @@ public class Listener implements MouseListener
         		if(num != -1) //If it contains a mine, game over
             	{
         			tile.setAlive(false); //sets it so program knows that tile has been clicked before
-
-        			potTile.removeImage(COVER);
+        			tile.removeImage(COVER);
         			
             		if(num != 0)
             		{
-            			tile.placeImageOnTile(NUMBER);
+            			//tile.placeImageOnTile(NUMBER);
             		}
             	}
             	else //Game Over Method should be added here
             	{
     				tile.removeImage(COVER);
-        			tile.placeImageOnTile(MINE);
+        			//tile.placeImageOnTile(MINE);
             	}
 		    	tile.setAlive(false);
         	}
@@ -58,11 +55,11 @@ public class Listener implements MouseListener
         		switch(tile.getIconType())
         		{
     				case COVER:
-    					tile.placeImageOnTile(FLAG);
+    					//tile.placeImageOnTile(FLAG);
     					break;
     				case FLAG:
     					tile.removeImage(FLAG);
-    					tile.placeImageOnTile(QUESTION);
+    					//tile.placeImageOnTile(QUESTION);
     					break;  
     				case QUESTION:
     					tile.removeImage(QUESTION);

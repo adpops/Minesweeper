@@ -18,6 +18,8 @@ public class Tile extends JPanel
 	private ImageIcon flagImg;
 	private ImageIcon questionImg;
 	private ImageIcon mineImg;
+	
+	private JLabel coverLbl;
 	private Listener listener;
 	private boolean alive;
 	private int x;
@@ -45,7 +47,8 @@ public class Tile extends JPanel
 		setLayout(new BorderLayout());
 		
 		coverImg = new ImageIcon(getImageForTile(COVER));
-		setImage(coverImg);
+		coverLbl = setImageLbl(coverImg);
+		setImage(coverLbl);
 			
 		//each tile needs it's own listener, that way I know which tile is being clicked on
 		listener = new Listener(this);
@@ -58,9 +61,9 @@ public class Tile extends JPanel
 			mineImg = mine.getImageIcon();
 		}		
 		//Flag image code
-		flag = new Flag();
+		/*flag = new Flag();
 		flagImg = flag.getImageIcon();
-		
+		*/
 		//Tile cover image code
 		cover = new Cover();
 		coverImg = cover.getImageIcon();
@@ -89,7 +92,6 @@ public class Tile extends JPanel
 		return alive;
 	}
 	
-	
 	public int getIconType()
 	{
 		return iconType;
@@ -109,10 +111,14 @@ public class Tile extends JPanel
 	{
 		alive = mode;
 	}
-		
-	private void setImage(ImageIcon img)
+	
+	private JLabel setImageLbl(ImageIcon img)
 	{
-		JLabel imageLbl = new JLabel(img);
+		return new JLabel(img);
+	}
+	
+	private void setImage(JLabel imageLbl)
+	{
 		this.add(imageLbl);
 	}
 	private Image getImageForTile(int type) 
@@ -145,11 +151,11 @@ public class Tile extends JPanel
 	
 	public void removeImage(int type)
 	{
-		JLabel imageLbl = new JLabel(coverImg);
+		JLabel imageLbl = coverLbl;
 		switch(type)
 		{
 			case COVER:
-				imageLbl = new JLabel(coverImg);
+				imageLbl = coverLbl;
 				//board.tileCheck(this);
 				break;
 			case NUMBER:
@@ -166,6 +172,7 @@ public class Tile extends JPanel
 				break;
 		}
 		this.remove(imageLbl);
+		System.out.println("done");
 	}
 
 }
