@@ -47,8 +47,8 @@ public class Tile extends JPanel
 		setLayout(new BorderLayout());
 		
 		coverImg = new ImageIcon(getImageForTile(COVER));
-		coverLbl = setImageLbl(coverImg);
-		setImage(coverLbl);
+		coverLbl = new JLabel(coverImg);
+		this.add(coverLbl);
 			
 		//each tile needs it's own listener, that way I know which tile is being clicked on
 		listener = new Listener(this);
@@ -64,10 +64,6 @@ public class Tile extends JPanel
 		/*flag = new Flag();
 		flagImg = flag.getImageIcon();
 		*/
-		//Tile cover image code
-		cover = new Cover();
-		coverImg = cover.getImageIcon();
-		//placeImageOnTile(COVER);
 		
 		//board.tileCheck(this);
 	}
@@ -151,12 +147,11 @@ public class Tile extends JPanel
 	
 	public void removeImage(int type)
 	{
-		JLabel imageLbl = coverLbl;
+		JLabel imageLbl = null;
 		switch(type)
 		{
 			case COVER:
-				imageLbl = coverLbl;
-				//board.tileCheck(this);
+				imageLbl = coverLbl;				
 				break;
 			case NUMBER:
 				imageLbl = new JLabel(numImg);
@@ -172,7 +167,8 @@ public class Tile extends JPanel
 				break;
 		}
 		this.remove(imageLbl);
-		System.out.println("done");
+		this.repaint();
+
 	}
 
 }

@@ -35,7 +35,6 @@ public class BoardPanel extends AbstractPanel
 			for(int y = 0; y < height; y++)
 			{
 				Tile tile = new Tile(x, y, this);
-				tile.setBackground(Color.green);
 				this.add(tile);
 				tileList[x][y] = tile;
 			}
