@@ -12,6 +12,7 @@ public class Tile extends JPanel
 	private Cover cover;
 	private Number num;
 	private Flag flag;
+	private Question question;
 	private Mine mine;
 	private ImageIcon coverImg;
 	private ImageIcon numImg;
@@ -60,10 +61,12 @@ public class Tile extends JPanel
 			mine = new Mine();
 			mineImg = mine.getImageIcon();
 		}		
-		//Flag image code
-		/*flag = new Flag();
-		flagImg = flag.getImageIcon();
-		*/
+		/*//Flag image code
+		flag = new Flag();
+		flagImg = flag.getImageIcon();*/
+		
+		question = new Question();
+		questionImg = question.getImageIcon();
 		
 		//board.tileCheck(this);
 	}
@@ -170,5 +173,30 @@ public class Tile extends JPanel
 		this.repaint();
 
 	}
+	
+	public void placeImageOnTile(int type)
+	{
+		JLabel imageLbl = null;
 
+		switch(type)
+		{
+			case COVER:
+				imageLbl = coverLbl;				
+				break;
+			case NUMBER:
+				imageLbl = new JLabel(numImg);
+				break;
+			case FLAG:
+				imageLbl = new JLabel(flagImg);
+				break;
+			case QUESTION:
+				imageLbl = new JLabel(questionImg);
+				break;
+			case MINE:
+				imageLbl = new JLabel(mineImg);
+				break;
+		}
+		removeImage(type);
+		this.add(imageLbl);
+	}
 }

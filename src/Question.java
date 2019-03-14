@@ -12,9 +12,9 @@ public class Question extends MinesweeperImages
 	
 	private Image setImage() 
     {
-        String filename = "Flag.png";
+        String filename = "Question.png";
 
         URL urlPieceImg = getClass().getResource("images/" + filename);
-        return new ImageIcon(urlPieceImg).getImage();        
+        return new ImageIcon(urlPieceImg).getImage();       
     }
 }

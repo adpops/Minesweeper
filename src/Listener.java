@@ -54,12 +54,12 @@ public class Listener implements MouseListener
         	{
         		switch(tile.getIconType())
         		{
-    				case COVER:
+    				/*case COVER:
     					//tile.placeImageOnTile(FLAG);
-    					break;
-    				case FLAG:
+    					break;*/
+    				case COVER:
     					tile.removeImage(FLAG);
-    					//tile.placeImageOnTile(QUESTION);
+    					tile.placeImageOnTile(QUESTION);
     					break;  
     				case QUESTION:
     					tile.removeImage(QUESTION);
