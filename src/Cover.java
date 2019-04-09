@@ -3,18 +3,15 @@ import java.net.URL;
 
 import javax.swing.ImageIcon;
 
-public class Cover extends MinesweeperImages
-{
-	public Cover()
-	{
-		img = setImage();
-	}
-	
-	private Image setImage() 
-    {
-        String filename = "Cover.png";
+public class Cover extends MinesweeperImages {
+    public Cover() {
+	img = setImage();
+    }
 
-        URL urlPieceImg = getClass().getResource("images/" + filename);
-        return new ImageIcon(urlPieceImg).getImage();        
+    private Image setImage() {
+	String filename = "Cover.png";
+
+	URL urlPieceImg = getClass().getResource("images/" + filename);
+	return new ImageIcon(urlPieceImg).getImage();
     }
 }
