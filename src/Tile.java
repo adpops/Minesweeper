@@ -101,6 +101,10 @@ public class Tile extends JPanel {
 	alive = mode;
     }
 
+    public void setIconType(int icon) {
+	iconType = icon;
+    }
+
     private Image getImageForTile(int type) {
 	String filename = "";
 
@@ -157,18 +161,23 @@ public class Tile extends JPanel {
 	switch (type) {
 	    case COVER:
 		imageLbl = coverLbl;
+		setIconType(COVER);
 		break;
 	    case NUMBER:
 		imageLbl = new JLabel(numImg);
+		setIconType(NUMBER);
 		break;
 	    case FLAG:
 		imageLbl = flagLbl;
+		setIconType(FLAG);
 		break;
 	    case QUESTION:
 		imageLbl = new JLabel(questionImg);
+		setIconType(QUESTION);
 		break;
 	    case MINE:
 		imageLbl = new JLabel(mineImg);
+		setIconType(MINE);
 		break;
 	}
 	this.add(imageLbl);

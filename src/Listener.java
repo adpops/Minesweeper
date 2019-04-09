@@ -26,44 +26,45 @@ public class Listener implements MouseListener {
     @Override
     public void mousePressed(MouseEvent evt) {
 	alive = tile.getAlive();
-	if (alive) // If the tile has already been clicked, don't do anything
-	{
-	    if (SwingUtilities.isLeftMouseButton(evt)) // If Left Click
-	    {
-		if (num != -1) // If it contains a mine, game over
-		{
-		    tile.setAlive(false); // sets it so program knows that tile has been clicked before
-		    tile.removeImage(COVER);
 
-		    if (num != 0) {
-			// tile.placeImageOnTile(NUMBER);
-		    }
-		}
-		else // Game Over Method should be added here
-		{
+	if (SwingUtilities.isLeftMouseButton(evt)) // If Left Click
+	{
+	    // If it contains a mine, game over
+	    if (num != -1) {
+		if (alive) {
 		    tile.removeImage(COVER);
-		    // tile.placeImageOnTile(MINE);
 		}
-		tile.setAlive(false);
+		tile.setAlive(false); // sets it so program knows that tile has been clicked before
+
+		if (num != 0) {
+		    // tile.placeImageOnTile(NUMBER);
+		}
 	    }
-	    else if (SwingUtilities.isRightMouseButton(evt)) // If right click
-	    {
-		switch (tile.getIconType()) {
-		    case COVER:
-			tile.removeImage(COVER);
-			tile.placeImageOnTile(FLAG);
-			break;
-		    case FLAG:
-			tile.removeImage(FLAG);
-			tile.placeImageOnTile(QUESTION);
-			break;
-		    case QUESTION:
-			tile.removeImage(QUESTION);
-			break;
-		}
+	    // Game Over Method should be added here
+	    else {
+		tile.remove(COVER);
+		tile.placeImageOnTile(MINE);
+	    }
+	    tile.setAlive(false);
+	}
+	// If right click
+	else if (SwingUtilities.isRightMouseButton(evt)) {
+	    System.out.println(tile.getIconType());
+
+	    switch (tile.getIconType()) {
+		case COVER:
+		    tile.removeImage(COVER);
+		    tile.placeImageOnTile(FLAG);
+		    break;
+		case FLAG:
+		    tile.removeImage(FLAG);
+		    tile.placeImageOnTile(QUESTION);
+		    break;
+		case QUESTION:
+		    tile.removeImage(QUESTION);
+		    break;
 	    }
 	}
-
     }
 
     @Override
