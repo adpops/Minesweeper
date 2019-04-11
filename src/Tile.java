@@ -18,6 +18,7 @@ public class Tile extends JPanel {
 
     private JLabel coverLbl;
     private JLabel flagLbl;
+    private JLabel questionLbl;
 
     private Listener listener;
     private boolean alive;
@@ -50,6 +51,14 @@ public class Tile extends JPanel {
 	coverLbl = new JLabel(coverImg);
 	this.add(coverLbl);
 
+	// Flag image
+	flagImg = new ImageIcon(getImageForTile(FLAG));
+	flagLbl = new JLabel(flagImg);
+
+	// Question image
+	questionImg = new ImageIcon(getImageForTile(QUESTION));
+	questionLbl = new JLabel(questionImg);
+
 	// each tile needs it's own listener, that way I know which tile is being
 	// clicked on
 	listener = new Listener(this);
@@ -61,10 +70,6 @@ public class Tile extends JPanel {
 	     * mine = new Mine(); mineImg = mine.getImageIcon();
 	     */
 	}
-	// Flag image code
-	// flag = new Flag();
-	flagImg = new ImageIcon(getImageForTile(FLAG));
-	flagLbl = new JLabel(flagImg);
 
 	// board.tileCheck(this);
     }
@@ -144,7 +149,7 @@ public class Tile extends JPanel {
 		imageLbl = flagLbl;
 		break;
 	    case QUESTION:
-		imageLbl = new JLabel(questionImg);
+		imageLbl = questionLbl;
 		break;
 	    case MINE:
 		imageLbl = new JLabel(mineImg);
@@ -172,7 +177,7 @@ public class Tile extends JPanel {
 		setIconType(FLAG);
 		break;
 	    case QUESTION:
-		imageLbl = new JLabel(questionImg);
+		imageLbl = questionLbl;
 		setIconType(QUESTION);
 		break;
 	    case MINE:
@@ -183,6 +188,5 @@ public class Tile extends JPanel {
 
 	this.add(imageLbl);
 	imageLbl.revalidate();
-	// this.repaint();
     }
 }
