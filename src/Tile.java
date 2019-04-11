@@ -180,7 +180,9 @@ public class Tile extends JPanel {
 		setIconType(MINE);
 		break;
 	}
+
 	this.add(imageLbl);
-	this.repaint();
+	imageLbl.revalidate();
+	// this.repaint();
     }
 }

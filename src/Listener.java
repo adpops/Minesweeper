@@ -49,7 +49,6 @@ public class Listener implements MouseListener {
 	}
 	// If right click
 	else if (SwingUtilities.isRightMouseButton(evt)) {
-	    System.out.println(tile.getIconType());
 
 	    switch (tile.getIconType()) {
 		case COVER:
