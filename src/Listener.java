@@ -61,6 +61,7 @@ public class Listener implements MouseListener {
 		    break;
 		case QUESTION:
 		    tile.removeImage(QUESTION);
+		    tile.placeImageOnTile(COVER);
 		    break;
 	    }
 	}
