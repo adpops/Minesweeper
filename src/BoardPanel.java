@@ -20,7 +20,7 @@ public class BoardPanel extends AbstractPanel {
 	tilesWithMines = new Tile[width][height];
 
 	createPanel();
-	placeMines();
+	// placeMines();
 
 	game.add(this);
     }
@@ -28,7 +28,7 @@ public class BoardPanel extends AbstractPanel {
     private void createPanel() {
 	for (int x = 0; x < width; x++) {
 	    for (int y = 0; y < height; y++) {
-		Tile tile = new Tile(x, y, this);
+		Tile tile = new Tile(x, y, this, -1);
 		this.add(tile);
 		tileList[x][y] = tile;
 	    }

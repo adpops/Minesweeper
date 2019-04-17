@@ -7,9 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Tile extends JPanel {
-    private Cover cover;
-    private Number num;
-    private Flag flag;
     private ImageIcon coverImg;
     private ImageIcon numImg;
     private ImageIcon flagImg;
@@ -19,15 +16,14 @@ public class Tile extends JPanel {
     private JLabel coverLbl;
     private JLabel flagLbl;
     private JLabel questionLbl;
+    private JLabel mineLbl;
 
     private Listener listener;
     private boolean alive;
     private int x;
     private int y;
     private int iconType;
-    private BoardPanel board;
     private boolean hasMine;
-    private int mineNumber;
     private int tileNum;
 
     private final int COVER = 0;
@@ -37,15 +33,18 @@ public class Tile extends JPanel {
     private final int MINE = 4;
 
     // Class for each of the tiles on gameboard
-    public Tile(int x, int y, BoardPanel board) {
+    public Tile(int x, int y, BoardPanel board, int num) {
 
-	// Coordinates will start from top left at (0, 0) and then next tiles will be
-	// (0, 1) and (1, 0) down to the last tile
+	setLayout(new BorderLayout());
+
+	/*
+	 * Coordinates will start from top left at (0, 0) and then next tiles will be
+	 * (0, 1) and (1, 0) down to the last tile
+	 */
+
 	this.x = x;
 	this.y = y;
-	this.board = board;
-	hasMine = false;
-	setLayout(new BorderLayout());
+	hasMine = (num == -1) ? true : false;
 
 	coverImg = new ImageIcon(getImageForTile(COVER));
 	coverLbl = new JLabel(coverImg);
@@ -59,17 +58,16 @@ public class Tile extends JPanel {
 	questionImg = new ImageIcon(getImageForTile(QUESTION));
 	questionLbl = new JLabel(questionImg);
 
-	// each tile needs it's own listener, that way I know which tile is being
-	// clicked on
+	// Mine image
+	mineImg = new ImageIcon(getImageForTile(MINE));
+	mineLbl = new JLabel(mineImg);
+
+	/*
+	 * each tile needs it's own listener, that way I know which tile is being
+	 * clicked on
+	 */
 	listener = new Listener(this);
 	this.addMouseListener(listener);
-
-	// Mine image code
-	if (hasMine == true) {
-	    /*
-	     * mine = new Mine(); mineImg = mine.getImageIcon();
-	     */
-	}
 
 	// board.tileCheck(this);
     }
@@ -157,7 +155,6 @@ public class Tile extends JPanel {
 	}
 	this.remove(imageLbl);
 	this.repaint();
-
     }
 
     public void placeImageOnTile(int type) {

@@ -18,7 +18,7 @@ public class Listener implements MouseListener {
 
     public Listener(Tile tile) {
 	this.tile = tile;
-	// this.num = tile.getNum();
+	this.num = tile.getNum();
 	tile.setAlive(true);
 	this.alive = tile.getAlive();
     }
@@ -27,12 +27,13 @@ public class Listener implements MouseListener {
     public void mousePressed(MouseEvent evt) {
 	alive = tile.getAlive();
 
-	if (SwingUtilities.isLeftMouseButton(evt)) // If Left Click
+	if (SwingUtilities.isLeftMouseButton(evt) && tile.getIconType() == COVER) // If Left Click
 	{
 	    // If it contains a mine, game over
 	    if (num != -1) {
 		if (alive) {
 		    tile.removeImage(COVER);
+		    tile.placeImageOnTile(MINE);
 		}
 		tile.setAlive(false); // sets it so program knows that tile has been clicked before
 
