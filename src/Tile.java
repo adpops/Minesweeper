@@ -23,7 +23,7 @@ public class Tile extends JPanel {
     private int x;
     private int y;
     private int iconType;
-    private int tileNum;
+    private int tileNum = 0;
 
     private final int COVER = 0;
     private final int NUMBER = 1;
@@ -92,6 +92,10 @@ public class Tile extends JPanel {
 
     public void setNum(int number) {
 	tileNum = number;
+    }
+
+    public void addNum(int number) {
+	tileNum += number;
     }
 
     public void setAlive(boolean mode) {
