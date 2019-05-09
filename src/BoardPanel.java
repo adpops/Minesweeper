@@ -20,7 +20,7 @@ public class BoardPanel extends AbstractPanel {
 	tilesWithMines = new Tile[width][height];
 
 	createPanel();
-	// placeMines();
+	placeMines();
 
 	game.add(this);
     }
@@ -28,7 +28,7 @@ public class BoardPanel extends AbstractPanel {
     private void createPanel() {
 	for (int x = 0; x < width; x++) {
 	    for (int y = 0; y < height; y++) {
-		Tile tile = new Tile(x, y, this, -1);
+		Tile tile = new Tile(x, y, this);
 		this.add(tile);
 		tileList[x][y] = tile;
 	    }
@@ -39,16 +39,15 @@ public class BoardPanel extends AbstractPanel {
 	Random rand = new Random();
 	int posX = 0;
 	int posY = 0;
-	int maxXValue = width;
-	int maxYValue = height;
 	int numOfMinesPlaced = 0;
 
 	while (numOfMinesPlaced < numOfMines) {
-	    posX = rand.nextInt(maxXValue);
-	    posY = rand.nextInt(maxYValue);
+	    posX = rand.nextInt(width);
+	    posY = rand.nextInt(height);
 
-	    if (!tileList[posX][posY].getHasMine()) {
-		tileList[posX][posY].setMine();
+	    if (!(tileList[posX][posY].getNum() == -1)) {
+		// System.out.println(posX + ", " + posY);
+		tileList[posX][posY].setNum(-1);
 		tilesWithMines[posX][posY] = tileList[posX][posY];
 		numOfMinesPlaced++;
 	    }

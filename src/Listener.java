@@ -6,7 +6,6 @@ import javax.swing.SwingUtilities;
 public class Listener implements MouseListener {
     private boolean alive;
     private Tile tile;
-    private int num;
     private Tile tileList[][];
     private Tile potTile;
 
@@ -18,7 +17,6 @@ public class Listener implements MouseListener {
 
     public Listener(Tile tile) {
 	this.tile = tile;
-	this.num = tile.getNum();
 	tile.setAlive(true);
 	this.alive = tile.getAlive();
     }
@@ -26,18 +24,16 @@ public class Listener implements MouseListener {
     @Override
     public void mousePressed(MouseEvent evt) {
 	alive = tile.getAlive();
-
-	if (SwingUtilities.isLeftMouseButton(evt) && tile.getIconType() == COVER) // If Left Click
-	{
+	// If Left Click
+	if (SwingUtilities.isLeftMouseButton(evt) && tile.getIconType() == COVER) {
 	    // If it contains a mine, game over
-	    if (num != -1) {
+	    if (tile.getNum() != -1) {
 		if (alive) {
 		    tile.removeImage(COVER);
-		    tile.placeImageOnTile(MINE);
 		}
 		tile.setAlive(false); // sets it so program knows that tile has been clicked before
 
-		if (num != 0) {
+		if (tile.getNum() != 0) {
 		    // tile.placeImageOnTile(NUMBER);
 		}
 	    }

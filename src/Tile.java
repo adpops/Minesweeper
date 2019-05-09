@@ -23,7 +23,6 @@ public class Tile extends JPanel {
     private int x;
     private int y;
     private int iconType;
-    private boolean hasMine;
     private int tileNum;
 
     private final int COVER = 0;
@@ -33,7 +32,7 @@ public class Tile extends JPanel {
     private final int MINE = 4;
 
     // Class for each of the tiles on gameboard
-    public Tile(int x, int y, BoardPanel board, int num) {
+    public Tile(int x, int y, BoardPanel board) {
 
 	setLayout(new BorderLayout());
 
@@ -44,7 +43,6 @@ public class Tile extends JPanel {
 
 	this.x = x;
 	this.y = y;
-	hasMine = (num == -1) ? true : false;
 
 	coverImg = new ImageIcon(getImageForTile(COVER));
 	coverLbl = new JLabel(coverImg);
@@ -92,12 +90,8 @@ public class Tile extends JPanel {
 	return iconType;
     }
 
-    public boolean getHasMine() {
-	return hasMine;
-    }
-
-    public void setMine() {
-	hasMine = true;
+    public void setNum(int number) {
+	tileNum = number;
     }
 
     public void setAlive(boolean mode) {
@@ -150,7 +144,7 @@ public class Tile extends JPanel {
 		imageLbl = questionLbl;
 		break;
 	    case MINE:
-		imageLbl = new JLabel(mineImg);
+		imageLbl = mineLbl;
 		break;
 	}
 	this.remove(imageLbl);
@@ -178,12 +172,13 @@ public class Tile extends JPanel {
 		setIconType(QUESTION);
 		break;
 	    case MINE:
-		imageLbl = new JLabel(mineImg);
+		imageLbl = mineLbl;
 		setIconType(MINE);
 		break;
 	}
 
 	this.add(imageLbl);
 	imageLbl.revalidate();
+	imageLbl.repaint();
     }
 }
