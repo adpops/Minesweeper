@@ -27,8 +27,8 @@ public class BoardPanel extends AbstractPanel {
     }
 
     private void createPanel() {
-	for (int x = 0; x < width; x++) {
-	    for (int y = 0; y < height; y++) {
+	for(int x = 0; x < width; x++) {
+	    for(int y = 0; y < height; y++) {
 		Tile tile = new Tile(x, y, this);
 		this.add(tile);
 		tileList[x][y] = tile;
@@ -42,11 +42,11 @@ public class BoardPanel extends AbstractPanel {
 	int posY = 0;
 	int minesPlaced = 0;
 
-	while (minesPlaced < numOfMines) {
+	while(minesPlaced < numOfMines) {
 	    posX = rand.nextInt(width);
 	    posY = rand.nextInt(height);
 
-	    if (!(tileList[posX][posY].getNum() == -1)) {
+	    if(!(tileList[posX][posY].getNum() == -1)) {
 		tileList[posX][posY].setNum(-1);
 		tilesWithMines[posX][posY] = tileList[posX][posY];
 		minesPlaced++;
@@ -55,30 +55,31 @@ public class BoardPanel extends AbstractPanel {
     }
 
     private void placeNums() {
-	// System.out.println(tileList.length + " " + tilesWithMines.size);
+	for(Tile[] tileArray : tilesWithMines) {
+	    for(Tile tile : tileArray) {
+		if(tile != null) {
 
-	for (Tile[] tileArray : tilesWithMines) {
-	    for (Tile tile : tileArray) {
-		if (tile != null) {
-		    System.out.println(tile.getNum());
-
-		    for (int xCount = -1; tile.getTileX() + xCount < 8; xCount += 2) {
+		    for(int xCount = -1; (tile.getTileX() + xCount <= 7
+			    && tile.getTileX() + xCount >= 0); xCount += 2) {
 
 			int posX = tile.getTileX() + xCount;
-			tileList[posX][tile.getTileY()].addNum(1);
-			System.out.println(posX + " " + tile.getTileY());
-			for (int yCount = -1; tile.getTileY() + yCount < 8; yCount += 2) {
+			if(tileList[posX][tile.getTileY()].getNum() != -1) {
+			    tileList[posX][tile.getTileY()].addNum(1);
+			}
+
+			for(int yCount = -1; (tile.getTileY() + yCount <= 7
+				&& tile.getTileY() + yCount >= 0); yCount += 2) {
+
 			    int posY = tile.getTileY() + yCount;
-			    tileList[posX][posY].addNum(1);
-			    System.out.println(tile.getTileX() + xCount + " " + tile.getTileY() + yCount);
+			    if(tileList[posX][posY].getNum() != -1) {
+				tileList[posX][posY].addNum(1);
+			    }
+			    if(tileList[tile.getTileX()][posY].getNum() != -1) {
+				tileList[tile.getTileX()][posY].addNum(1);
+			    }
 			}
 		    }
-		    for (int yCount = -1; yCount < 8; yCount = +2) {
-			tileList[tile.getTileX()][tile.getTileY() + yCount].addNum(1);
-			System.out.println(tile.getTileX() + " " + tile.getTileY() + yCount);
-		    }
 		}
-
 	    }
 	}
     }

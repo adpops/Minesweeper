@@ -106,10 +106,42 @@ public class Tile extends JPanel {
 	iconType = icon;
     }
 
+    private JLabel determineNum(int num) {
+	JLabel imageLbl = null;
+
+	switch(num) {
+	    case 1:
+		imageLbl = oneLbl;
+		break;
+	    case 2:
+		imageLbl = twoLbl;
+		break;
+	    case 3:
+		imageLbl = threeLbl;
+		break;
+	    case 4:
+		imageLbl = fourLbl;
+		break;
+	    case 5:
+		imageLbl = fiveLbl;
+		break;
+	    case 6:
+		imageLbl = sixLbl;
+		break;
+	    case 7:
+		imageLbl = sevenLbl;
+		break;
+	    case 8:
+		imageLbl = eightLbl;
+		break;
+	}
+	return imageLbl;
+    }
+
     private Image getImageForTile(int type) {
 	String filename = "";
 
-	switch (type) {
+	switch(type) {
 	    case COVER:
 		filename += "Cover";
 		break;
@@ -134,12 +166,12 @@ public class Tile extends JPanel {
 
     public void removeImage(int type) {
 	JLabel imageLbl = null;
-	switch (type) {
+	switch(type) {
 	    case COVER:
 		imageLbl = coverLbl;
 		break;
 	    case NUMBER:
-		imageLbl = new JLabel(numImg);
+		imageLbl = determineNum(this.getNum());
 		break;
 	    case FLAG:
 		imageLbl = flagLbl;
@@ -158,13 +190,13 @@ public class Tile extends JPanel {
     public void placeImageOnTile(int type) {
 	JLabel imageLbl = null;
 
-	switch (type) {
+	switch(type) {
 	    case COVER:
 		imageLbl = coverLbl;
 		setIconType(COVER);
 		break;
 	    case NUMBER:
-		imageLbl = new JLabel(numImg);
+		imageLbl = determineNum(this.getNum());
 		setIconType(NUMBER);
 		break;
 	    case FLAG:
