@@ -17,6 +17,16 @@ public class Tile extends JPanel {
     private JLabel flagLbl;
     private JLabel questionLbl;
     private JLabel mineLbl;
+    private JLabel numLbl;
+
+    private JLabel oneLbl;
+    private JLabel twoLbl;
+    private JLabel threeLbl;
+    private JLabel fourLbl;
+    private JLabel fiveLbl;
+    private JLabel sixLbl;
+    private JLabel sevenLbl;
+    private JLabel eightLbl;
 
     private Listener listener;
     private boolean alive;
@@ -60,6 +70,8 @@ public class Tile extends JPanel {
 	mineImg = new ImageIcon(getImageForTile(MINE));
 	mineLbl = new JLabel(mineImg);
 
+	// Num image
+
 	/*
 	 * each tile needs it's own listener, that way I know which tile is being
 	 * clicked on
@@ -92,6 +104,7 @@ public class Tile extends JPanel {
 
     public void setNum(int number) {
 	tileNum = number;
+	numLbl = new JLabel(new ImageIcon(getImageForTile(NUMBER)));
     }
 
     public void addNum(int number) {
@@ -106,36 +119,35 @@ public class Tile extends JPanel {
 	iconType = icon;
     }
 
-    private JLabel determineNum(int num) {
-	JLabel imageLbl = null;
-
+    private String determineNum(int num) {
+	String filename = "";
 	switch(num) {
 	    case 1:
-		imageLbl = oneLbl;
+		filename = "One";
 		break;
 	    case 2:
-		imageLbl = twoLbl;
+		filename = "Two";
 		break;
 	    case 3:
-		imageLbl = threeLbl;
+		filename = "Three";
 		break;
 	    case 4:
-		imageLbl = fourLbl;
+		filename = "Four";
 		break;
 	    case 5:
-		imageLbl = fiveLbl;
+		filename = "Five";
 		break;
 	    case 6:
-		imageLbl = sixLbl;
+		filename = "Six";
 		break;
 	    case 7:
-		imageLbl = sevenLbl;
+		filename = "Seven";
 		break;
 	    case 8:
-		imageLbl = eightLbl;
+		filename = "Eight";
 		break;
 	}
-	return imageLbl;
+	return filename;
     }
 
     private Image getImageForTile(int type) {
@@ -143,19 +155,19 @@ public class Tile extends JPanel {
 
 	switch(type) {
 	    case COVER:
-		filename += "Cover";
+		filename = "Cover";
 		break;
 	    case NUMBER:
-		filename += "Number";
+		filename = "One";
 		break;
 	    case FLAG:
-		filename += "Flag";
+		filename = "Flag";
 		break;
 	    case QUESTION:
-		filename += "Question";
+		filename = "Question";
 		break;
 	    case MINE:
-		filename += "Mine";
+		filename = "Mine";
 		break;
 	}
 	filename += ".png";
@@ -171,7 +183,7 @@ public class Tile extends JPanel {
 		imageLbl = coverLbl;
 		break;
 	    case NUMBER:
-		imageLbl = determineNum(this.getNum());
+		imageLbl = numLbl;
 		break;
 	    case FLAG:
 		imageLbl = flagLbl;
@@ -196,7 +208,7 @@ public class Tile extends JPanel {
 		setIconType(COVER);
 		break;
 	    case NUMBER:
-		imageLbl = determineNum(this.getNum());
+		imageLbl = numLbl;
 		setIconType(NUMBER);
 		break;
 	    case FLAG:
@@ -212,7 +224,6 @@ public class Tile extends JPanel {
 		setIconType(MINE);
 		break;
 	}
-
 	this.add(imageLbl);
 	imageLbl.revalidate();
 	imageLbl.repaint();

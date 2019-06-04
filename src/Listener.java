@@ -25,29 +25,24 @@ public class Listener implements MouseListener {
     public void mousePressed(MouseEvent evt) {
 	alive = tile.getAlive();
 	// If Left Click
-	if (SwingUtilities.isLeftMouseButton(evt) && tile.getIconType() == COVER) {
-	    // If it contains a mine, game over
-	    if (tile.getNum() != -1) {
-		if (alive) {
-		    tile.removeImage(COVER);
-		}
-		tile.setAlive(false); // sets it so program knows that tile has been clicked before
+	if(SwingUtilities.isLeftMouseButton(evt) && tile.getIconType() == COVER && alive) {
 
-		if (tile.getNum() != 0) {
-		    // tile.placeImageOnTile(NUMBER);
-		}
+	    tile.setAlive(false); // sets it so program knows that tile has been clicked before
+	    tile.removeImage(COVER); // If it contains a mine, game over
+
+	    if(tile.getNum() > 0) {
+		tile.placeImageOnTile(NUMBER);
 	    }
+
 	    // Game Over Method should be added here
-	    else {
-		tile.remove(COVER);
+	    if(tile.getNum() == -1) {
 		tile.placeImageOnTile(MINE);
 	    }
-	    tile.setAlive(false);
 	}
 	// If right click
-	else if (SwingUtilities.isRightMouseButton(evt)) {
+	else if(SwingUtilities.isRightMouseButton(evt)) {
 
-	    switch (tile.getIconType()) {
+	    switch(tile.getIconType()) {
 		case COVER:
 		    tile.removeImage(COVER);
 		    tile.placeImageOnTile(FLAG);
