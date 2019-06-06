@@ -7,12 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Tile extends JPanel {
-    private ImageIcon coverImg;
-    private ImageIcon numImg;
-    private ImageIcon flagImg;
-    private ImageIcon questionImg;
-    private ImageIcon mineImg;
-
     private JLabel coverLbl;
     private JLabel flagLbl;
     private JLabel questionLbl;
@@ -54,23 +48,17 @@ public class Tile extends JPanel {
 	this.x = x;
 	this.y = y;
 
-	coverImg = new ImageIcon(getImageForTile(COVER));
-	coverLbl = new JLabel(coverImg);
+	coverLbl = new JLabel(new ImageIcon(getImageForTile(COVER)));
 	this.add(coverLbl);
 
 	// Flag image
-	flagImg = new ImageIcon(getImageForTile(FLAG));
-	flagLbl = new JLabel(flagImg);
+	flagLbl = new JLabel(new ImageIcon(getImageForTile(FLAG)));
 
 	// Question image
-	questionImg = new ImageIcon(getImageForTile(QUESTION));
-	questionLbl = new JLabel(questionImg);
+	questionLbl = new JLabel(new ImageIcon(getImageForTile(QUESTION)));
 
 	// Mine image
-	mineImg = new ImageIcon(getImageForTile(MINE));
-	mineLbl = new JLabel(mineImg);
-
-	// Num image
+	mineLbl = new JLabel(new ImageIcon(getImageForTile(MINE)));
 
 	/*
 	 * each tile needs it's own listener, that way I know which tile is being
@@ -104,11 +92,11 @@ public class Tile extends JPanel {
 
     public void setNum(int number) {
 	tileNum = number;
-	numLbl = new JLabel(new ImageIcon(getImageForTile(NUMBER)));
     }
 
     public void addNum(int number) {
 	tileNum += number;
+	numLbl = new JLabel(new ImageIcon(getImageForTile(NUMBER)));
     }
 
     public void setAlive(boolean mode) {
@@ -158,7 +146,7 @@ public class Tile extends JPanel {
 		filename = "Cover";
 		break;
 	    case NUMBER:
-		filename = "One";
+		filename = determineNum(tileNum);
 		break;
 	    case FLAG:
 		filename = "Flag";
