@@ -59,23 +59,62 @@ public class BoardPanel extends AbstractPanel {
 	    for(Tile tile : tileArray) {
 		if(tile != null) {
 		    System.out.println(tile.getTileX() + "," + tile.getTileY());
-		    for(int xCount = -1; (tile.getTileX() + xCount <= 7
-			    && tile.getTileX() + xCount >= 0); xCount += 2) {
+		    for(int xCount = -1; xCount <= 1; xCount += 2) {
 
 			int posX = tile.getTileX() + xCount;
-			if(tileList[posX][tile.getTileY()].getNum() != -1) {
-			    tileList[posX][tile.getTileY()].addNum(1);
+			if(posX <= 7 && posX >= 0) {
+			    if(tileList[posX][tile.getTileY()].getNum() != -1) {
+				tileList[posX][tile.getTileY()].addNum(1);
+			    }
+
+			    for(int yCount = -1; yCount <= 1; yCount += 2) {
+				int posY = tile.getTileY() + yCount;
+				if(posY <= 7 && posY >= 0) {
+				    if(tileList[posX][posY].getNum() != -1) {
+					tileList[posX][posY].addNum(1);
+				    }
+				}
+
+			    }
 			}
-			/*
-			 * for(int yCount = -1; (tile.getTileY() + yCount <= 7 && tile.getTileY() +
-			 * yCount >= 0); yCount += 2) {
-			 * 
-			 * int posY = tile.getTileY() + yCount; if(xCount == -1) {
-			 * if(tileList[tile.getTileX()][posY].getNum() != -1) {
-			 * tileList[tile.getTileX()][posY].addNum(1); } }
-			 * if(tileList[posX][posY].getNum() != -1) { tileList[posX][posY].addNum(1); } }
-			 */
 		    }
+
+		    for(int yCount = -1; yCount <= 1; yCount += 2) {
+			int posY = tile.getTileY() + yCount;
+			if(posY <= 7 && posY >= 0) {
+			    if(tileList[tile.getTileX()][posY].getNum() != -1) {
+				tileList[tile.getTileX()][posY].addNum(1);
+			    }
+			}
+		    }
+		}
+	    }
+	}
+    }
+
+    public void clearTiles(Tile tile, int lblType) {
+	for(int xCount = -1; xCount <= 1; xCount += 2) {
+	    int posX = tile.getTileX() + xCount;
+	    if(posX <= 7 && posX >= 0) {
+		if(tileList[posX][tile.getTileY()].getNum() == 0) {
+		    tile.removeImage(lblType);
+		}
+
+		for(int yCount = -1; yCount <= 1; yCount += 2) {
+		    int posY = tile.getTileY() + yCount;
+		    if(posY <= 7 && posY >= 0) {
+			if(tileList[posX][posY].getNum() == 0) {
+			    tile.removeImage(lblType);
+			}
+		    }
+		}
+	    }
+	}
+	for(int yCount = -1; yCount <= 1; yCount += 2) {
+	    int posY = tile.getTileY() + yCount;
+	    if(posY <= 7 && posY >= 0) {
+		if(tileList[tile.getTileX()][posY].getNum() == 0) {
+		    tile.removeImage(lblType);
 		}
 	    }
 	}

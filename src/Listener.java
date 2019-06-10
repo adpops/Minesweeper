@@ -8,6 +8,7 @@ public class Listener implements MouseListener {
     private Tile tile;
     private Tile tileList[][];
     private Tile potTile;
+    private BoardPanel board;
 
     private final int COVER = 0;
     private final int NUMBER = 1;
@@ -15,8 +16,9 @@ public class Listener implements MouseListener {
     private final int QUESTION = 3;
     private final int MINE = 4;
 
-    public Listener(Tile tile) {
+    public Listener(Tile tile, BoardPanel board) {
 	this.tile = tile;
+	this.board = board;
 	tile.setAlive(true);
 	this.alive = tile.getAlive();
     }
@@ -33,9 +35,11 @@ public class Listener implements MouseListener {
 	    if(tile.getNum() > 0) {
 		tile.placeImageOnTile(NUMBER);
 	    }
-
+	    else if(tile.getNum() == 0) {
+		board.clearTiles(tile, COVER);
+	    }
 	    // Game Over Method should be added here
-	    if(tile.getNum() == -1) {
+	    else if(tile.getNum() == -1) {
 		tile.placeImageOnTile(MINE);
 	    }
 	}

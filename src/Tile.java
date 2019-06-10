@@ -64,7 +64,7 @@ public class Tile extends JPanel {
 	 * each tile needs it's own listener, that way I know which tile is being
 	 * clicked on
 	 */
-	listener = new Listener(this);
+	listener = new Listener(this, board);
 	this.addMouseListener(listener);
 
 	// board.tileCheck(this);
