@@ -28,7 +28,6 @@ public class Listener implements MouseListener {
 	alive = tile.getAlive();
 	// If Left Click
 	if(SwingUtilities.isLeftMouseButton(evt) && tile.getIconType() == COVER && alive) {
-
 	    tile.setAlive(false); // sets it so program knows that tile has been clicked before
 	    tile.removeImage(COVER); // If it contains a mine, game over
 
@@ -36,7 +35,7 @@ public class Listener implements MouseListener {
 		tile.placeImageOnTile(NUMBER);
 	    }
 	    else if(tile.getNum() == 0) {
-		board.clearTiles(tile, COVER);
+		board.clearTiles(tile.getTileX(), tile.getTileY(), COVER);
 	    }
 	    // Game Over Method should be added here
 	    else if(tile.getNum() == -1) {
