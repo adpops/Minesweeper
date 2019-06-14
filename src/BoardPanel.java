@@ -16,7 +16,7 @@ public class BoardPanel extends AbstractPanel {
 		super(gui);
 		width = game.getTileWidth();
 		height = game.getTileHeight();
-		numOfMines = game.getNumOfMines();
+		numOfMines = 10; //game.getNumOfMines();
 		setLayout(new GridLayout(width, height));
 		tileList = new Tile[width][height];
 		tilesWithMines = new Tile[width][height];
@@ -63,14 +63,14 @@ public class BoardPanel extends AbstractPanel {
 				if (tile != null) {
 					for (int xCount = -1; xCount <= 1; xCount += 2) {
 						int posX = tile.getTileX() + xCount;
-						if (posX <= 7 && posX >= 0) {
+						if (posX <= (width - 1) && posX >= 0) {
 							if (tileList[posX][tile.getTileY()].getNum() != -1) {
 								tileList[posX][tile.getTileY()].addNum(1);
 							}
 
 							for (int yCount = -1; yCount <= 1; yCount += 2) {
 								int posY = tile.getTileY() + yCount;
-								if (posY <= 7 && posY >= 0) {
+								if (posY <= (height - 1) && posY >= 0) {
 									if (tileList[posX][posY].getNum() != -1) {
 										tileList[posX][posY].addNum(1);
 									}
@@ -82,7 +82,7 @@ public class BoardPanel extends AbstractPanel {
 
 					for (int yCount = -1; yCount <= 1; yCount += 2) {
 						int posY = tile.getTileY() + yCount;
-						if (posY <= 7 && posY >= 0) {
+						if (posY <= (height - 1) && posY >= 0) {
 							if (tileList[tile.getTileX()][posY].getNum() != -1) {
 								tileList[tile.getTileX()][posY].addNum(1);
 							}
