@@ -38,6 +38,7 @@ public class Listener implements MouseListener {
 			// Game Over Method should be added here
 			else if (tile.getNum() == -1) {
 				tile.placeImageOnTile(MINE);
+				board.gameOver();
 			}
 			tile.setAlive(false); // sets it so program knows that tile has been clicked before
 		}

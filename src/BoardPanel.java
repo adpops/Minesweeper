@@ -1,19 +1,21 @@
 import java.awt.GridLayout;
+import java.awt.event.WindowEvent;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 public class BoardPanel extends AbstractPanel {
-	private int difficulty;
 	private int width;
 	private int height;
 	private int numOfMines;
 	private Tile[][] tileList;
 	private Tile[][] tilesWithMines;
-	private Tile[][] tilesCleared = new Tile[width][height];
-
 	private String cardName = "boardPanel";
+	private GameFrame game;
 
 	public BoardPanel(GUIManager gui, GameFrame game) {
 		super(gui);
+		this.game = game;
 		width = game.getTileWidth();
 		height = game.getTileHeight();
 		numOfMines = 10; //game.getNumOfMines();
@@ -112,5 +114,10 @@ public class BoardPanel extends AbstractPanel {
 				clearTiles(x, y + 1, lblType);
 			}
 		}
+	}
+	
+	public void gameOver() {
+		JOptionPane.showMessageDialog(game, "Game Over", "GAME OVER", JOptionPane.INFORMATION_MESSAGE);
+		game.dispose();
 	}
 }
