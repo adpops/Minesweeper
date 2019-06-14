@@ -13,17 +13,8 @@ public class Tile extends JPanel {
     private JLabel mineLbl;
     private JLabel numLbl;
 
-    private JLabel oneLbl;
-    private JLabel twoLbl;
-    private JLabel threeLbl;
-    private JLabel fourLbl;
-    private JLabel fiveLbl;
-    private JLabel sixLbl;
-    private JLabel sevenLbl;
-    private JLabel eightLbl;
-
     private Listener listener;
-    private boolean alive;
+	private boolean alive;
     private int x;
     private int y;
     private int iconType;
