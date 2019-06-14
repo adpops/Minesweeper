@@ -14,11 +14,12 @@ public class Tile extends JPanel {
     private JLabel numLbl;
 
     private Listener listener;
-	private boolean alive;
+    private boolean alive;
     private int x;
     private int y;
     private int iconType;
     private int tileNum = 0;
+    BoardPanel board;
 
     private final int COVER = 0;
     private final int NUMBER = 1;
@@ -35,7 +36,7 @@ public class Tile extends JPanel {
 	 * Coordinates will start from top left at (0, 0) and then next tiles will be
 	 * (0, 1) and (1, 0) down to the last tile
 	 */
-
+	this.board = board;
 	this.x = x;
 	this.y = y;
 
@@ -92,6 +93,9 @@ public class Tile extends JPanel {
 
     public void setAlive(boolean mode) {
 	alive = mode;
+	if(!mode) {
+	    board.deadTiles++;
+	}
     }
 
     public void setIconType(int icon) {
